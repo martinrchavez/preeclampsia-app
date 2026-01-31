@@ -430,6 +430,7 @@
 
         <nav class="tabs">
             <button class="tab-button active" onclick="showTab('qa')">💬 Ask Questions</button>
+            <button class="tab-button" onclick="showTab('bmi')">📏 BMI Calculator</button>
             <button class="tab-button" onclick="showTab('overview')">Overview</button>
             <button class="tab-button" onclick="showTab('risk')">Risk Assessment</button>
             <button class="tab-button" onclick="showTab('symptoms')">Symptoms</button>
@@ -513,6 +514,129 @@
                 <div class="info-box" style="margin-top: 1.5rem;">
                     <h4>🔒 Privacy Note</h4>
                     <p>Your questions are processed securely and not stored with personal information.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BMI CALCULATOR TAB -->
+        <div id="bmi" class="tab-content">
+            <div class="card">
+                <h2>BMI Calculator</h2>
+                <p>Body Mass Index (BMI) is used to categorize weight status. Obesity (BMI > 30) is a moderate risk factor for preeclampsia.</p>
+
+                <div class="info-box" style="margin-top: 1.5rem;">
+                    <h4>📊 BMI Categories:</h4>
+                    <ul>
+                        <li><strong>Underweight:</strong> BMI less than 18.5</li>
+                        <li><strong>Normal weight:</strong> BMI 18.5 - 24.9</li>
+                        <li><strong>Overweight:</strong> BMI 25 - 29.9</li>
+                        <li><strong>Obese:</strong> BMI 30 or greater (moderate risk factor for preeclampsia)</li>
+                    </ul>
+                </div>
+
+                <div style="max-width: 600px; margin: 2rem auto;">
+                    <form id="bmiForm" style="display: grid; gap: 1.5rem;">
+                        <div style="display: grid; gap: 0.5rem;">
+                            <label style="font-weight: 600; color: var(--text);">Unit System:</label>
+                            <div style="display: flex; gap: 1rem;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="radio" name="unitSystem" value="imperial" checked onchange="toggleUnits()">
+                                    <span>Imperial (lbs/inches)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="radio" name="unitSystem" value="metric" onchange="toggleUnits()">
+                                    <span>Metric (kg/cm)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Imperial Units -->
+                        <div id="imperialInputs" style="display: grid; gap: 1rem;">
+                            <div style="display: grid; gap: 0.5rem;">
+                                <label style="font-weight: 600; color: var(--text);">Weight (pounds):</label>
+                                <input 
+                                    type="number" 
+                                    id="weightLbs" 
+                                    placeholder="e.g., 150"
+                                    min="50"
+                                    max="500"
+                                    style="padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem;"
+                                >
+                            </div>
+                            <div style="display: grid; gap: 0.5rem;">
+                                <label style="font-weight: 600; color: var(--text);">Height:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <input 
+                                            type="number" 
+                                            id="heightFt" 
+                                            placeholder="Feet (e.g., 5)"
+                                            min="3"
+                                            max="8"
+                                            style="padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; width: 100%;"
+                                        >
+                                    </div>
+                                    <div>
+                                        <input 
+                                            type="number" 
+                                            id="heightIn" 
+                                            placeholder="Inches (e.g., 6)"
+                                            min="0"
+                                            max="11"
+                                            style="padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; width: 100%;"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Metric Units -->
+                        <div id="metricInputs" style="display: none; grid-gap: 1rem;">
+                            <div style="display: grid; gap: 0.5rem;">
+                                <label style="font-weight: 600; color: var(--text);">Weight (kilograms):</label>
+                                <input 
+                                    type="number" 
+                                    id="weightKg" 
+                                    placeholder="e.g., 68"
+                                    min="20"
+                                    max="300"
+                                    step="0.1"
+                                    style="padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem;"
+                                >
+                            </div>
+                            <div style="display: grid; gap: 0.5rem;">
+                                <label style="font-weight: 600; color: var(--text);">Height (centimeters):</label>
+                                <input 
+                                    type="number" 
+                                    id="heightCm" 
+                                    placeholder="e.g., 165"
+                                    min="100"
+                                    max="250"
+                                    step="0.1"
+                                    style="padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem;"
+                                >
+                            </div>
+                        </div>
+
+                        <button 
+                            type="submit" 
+                            style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border: none; padding: 1rem 2rem; font-size: 1.1rem; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;"
+                        >
+                            Calculate BMI
+                        </button>
+                    </form>
+
+                    <div id="bmiResult" style="margin-top: 2rem;"></div>
+                </div>
+
+                <div class="warning-box" style="margin-top: 2rem;">
+                    <h4>⚠️ Important Notes:</h4>
+                    <ul>
+                        <li><strong>BMI is a screening tool,</strong> not a diagnostic tool. It doesn't measure body fat directly.</li>
+                        <li><strong>During pregnancy,</strong> your BMI will increase. This calculator is best used before pregnancy or early in pregnancy.</li>
+                        <li><strong>Obesity (BMI > 30)</strong> is a moderate risk factor for preeclampsia. If you have 2+ moderate risk factors, talk to your doctor about low-dose aspirin.</li>
+                        <li><strong>Consult your healthcare provider</strong> about healthy weight goals for your pregnancy.</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -991,7 +1115,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'x-api-key': 'YOUR_API_KEY_HERE',  // ⚠️ REPLACE WITH YOUR ANTHROPIC API KEY
+                        'x-api-key': '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',
                         'anthropic-version': '2023-06-01'
                     },
                     body: JSON.stringify({
@@ -1064,6 +1188,145 @@
         window.addEventListener('load', () => {
             document.getElementById('chatInput').focus();
         });
+
+        // BMI Calculator Functions
+        function toggleUnits() {
+            const unitSystem = document.querySelector('input[name="unitSystem"]:checked').value;
+            const imperialInputs = document.getElementById('imperialInputs');
+            const metricInputs = document.getElementById('metricInputs');
+            
+            if (unitSystem === 'imperial') {
+                imperialInputs.style.display = 'grid';
+                metricInputs.style.display = 'none';
+            } else {
+                imperialInputs.style.display = 'none';
+                metricInputs.style.display = 'grid';
+            }
+        }
+
+        document.getElementById('bmiForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const unitSystem = document.querySelector('input[name="unitSystem"]:checked').value;
+            let bmi, weight, height;
+            
+            if (unitSystem === 'imperial') {
+                const weightLbs = parseFloat(document.getElementById('weightLbs').value);
+                const heightFt = parseFloat(document.getElementById('heightFt').value) || 0;
+                const heightIn = parseFloat(document.getElementById('heightIn').value) || 0;
+                const totalInches = (heightFt * 12) + heightIn;
+                
+                if (!weightLbs || !totalInches || totalInches === 0) {
+                    alert('Please enter valid weight and height values.');
+                    return;
+                }
+                
+                // BMI = (weight in pounds / (height in inches)²) × 703
+                bmi = (weightLbs / (totalInches * totalInches)) * 703;
+                weight = weightLbs + ' lbs';
+                height = heightFt + "'" + heightIn + '"';
+            } else {
+                const weightKg = parseFloat(document.getElementById('weightKg').value);
+                const heightCm = parseFloat(document.getElementById('heightCm').value);
+                
+                if (!weightKg || !heightCm) {
+                    alert('Please enter valid weight and height values.');
+                    return;
+                }
+                
+                // BMI = weight in kg / (height in meters)²
+                const heightM = heightCm / 100;
+                bmi = weightKg / (heightM * heightM);
+                weight = weightKg + ' kg';
+                height = heightCm + ' cm';
+            }
+            
+            displayBMIResult(bmi, weight, height);
+            
+            // Track BMI calculation
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'bmi_calculated', {
+                    bmi_value: Math.round(bmi * 10) / 10,
+                    bmi_category: getBMICategory(bmi),
+                    timestamp: new Date().toISOString()
+                });
+            }
+        });
+
+        function getBMICategory(bmi) {
+            if (bmi < 18.5) return 'Underweight';
+            if (bmi < 25) return 'Normal weight';
+            if (bmi < 30) return 'Overweight';
+            return 'Obese';
+        }
+
+        function displayBMIResult(bmi, weight, height) {
+            const resultDiv = document.getElementById('bmiResult');
+            const bmiRounded = Math.round(bmi * 10) / 10;
+            
+            let category, color, bgColor, borderColor, message, riskMessage;
+            
+            if (bmi < 18.5) {
+                category = 'Underweight';
+                color = '#1976D2';
+                bgColor = 'linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%)';
+                borderColor = '#1976D2';
+                message = 'Your BMI is below the normal range.';
+                riskMessage = '<p><strong>Preeclampsia Risk:</strong> Not considered a risk factor. However, maintaining a healthy weight is important for overall pregnancy health.</p>';
+            } else if (bmi < 25) {
+                category = 'Normal Weight';
+                color = '#388E3C';
+                bgColor = 'linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%)';
+                borderColor = '#52B788';
+                message = 'Your BMI is in the healthy range.';
+                riskMessage = '<p><strong>Preeclampsia Risk:</strong> Normal weight is not a risk factor for preeclampsia.</p>';
+            } else if (bmi < 30) {
+                category = 'Overweight';
+                color = '#F57C00';
+                bgColor = 'linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%)';
+                borderColor = '#F4A261';
+                message = 'Your BMI is above the healthy range.';
+                riskMessage = '<p><strong>Preeclampsia Risk:</strong> Being overweight may slightly increase risk. Focus on healthy eating and regular exercise. Consult your healthcare provider.</p>';
+            } else {
+                category = 'Obese';
+                color = '#D32F2F';
+                bgColor = 'linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%)';
+                borderColor = '#E63946';
+                message = 'Your BMI is in the obese range.';
+                riskMessage = '<p><strong>⚠️ Preeclampsia Risk:</strong> Obesity (BMI > 30) is a <strong>moderate risk factor</strong> for preeclampsia.</p><p><strong>If you have 2 or more moderate risk factors,</strong> you should discuss low-dose aspirin (81mg daily starting at 12-28 weeks) with your healthcare provider.</p><p><strong>Other moderate risk factors include:</strong> First pregnancy, age 35+, family history of preeclampsia, African American race.</p>';
+            }
+            
+            resultDiv.innerHTML = `
+                <div style="padding: 2rem; border-radius: 12px; border: 3px solid ${borderColor}; background: ${bgColor}; animation: slideIn 0.5s ease;">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <h3 style="color: ${color}; font-size: 2rem; margin-bottom: 0.5rem;">Your BMI: ${bmiRounded}</h3>
+                        <p style="font-size: 1.2rem; font-weight: 600; color: ${color};">${category}</p>
+                        <p style="margin-top: 0.5rem; color: var(--text-light);">Weight: ${weight} | Height: ${height}</p>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.6); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <p style="font-size: 1rem; margin-bottom: 1rem;"><strong>${message}</strong></p>
+                        ${riskMessage}
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.6); padding: 1rem; border-radius: 8px; font-size: 0.9rem;">
+                        <p><strong>BMI Reference Ranges:</strong></p>
+                        <ul style="margin: 0.5rem 0 0 1.5rem;">
+                            <li>Underweight: Less than 18.5</li>
+                            <li>Normal weight: 18.5 - 24.9</li>
+                            <li>Overweight: 25 - 29.9</li>
+                            <li>Obese: 30 or greater</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(255,255,255,0.6); border-radius: 8px; font-size: 0.85rem; font-style: italic;">
+                        <p>💡 <strong>Tip:</strong> If you're concerned about your BMI or preeclampsia risk, use the Risk Assessment tab to evaluate all your risk factors, and discuss prevention strategies with your healthcare provider.</p>
+                    </div>
+                </div>
+            `;
+            
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
     </script>
 </body>
 </html>
