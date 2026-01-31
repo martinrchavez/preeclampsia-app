@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preeclampsia Guide | Patient Education & Risk Assessment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics 4 -->
+    <!-- Replace 'G-XXXXXXXXXX' with your actual Google Analytics 4 Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <style>
+        :root {
+            --primary: #2C5F7C;
+            --primary-light: #4A8CB0;
+            --primary-dark: #1A3A4D;
+            --accent: #E87461;
+            --accent-light: #FFB4A8;
+            --background: #FDFCFA;
+            --surface: #FFFFFF;
+            --text: #2A2A2A;
+            --text-light: #666666;
+            --border: #E8E4DF;
+            --success: #52B788;
+            --warning: #F4A261;
+            --danger: #E63946;
+            --shadow: rgba(44, 95, 124, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, #FDFCFA 0%, #F5F3EE 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--surface);
+            border-bottom: 3px solid var(--primary);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .disclaimer {
+            background: linear-gradient(135deg, #FFF5F2 0%, #FFE8E0 100%);
+            padding: 1rem 1.5rem;
+            border-left: 4px solid var(--accent);
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text);
+            box-shadow: 0 2px 10px rgba(232, 116, 97, 0.1);
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .tab-button {
+            background: transparent;
+            border: none;
+            padding: 1rem 1.5rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tab-button:hover {
+            color: var(--primary);
+            background: rgba(44, 95, 124, 0.05);
+        }
+
+        .tab-button.active {
+            color: var(--primary);
+            border-bottom-color: var(--accent);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px var(--shadow);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--shadow);
+        }
+
+        .card h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .card h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin: 1.5rem 0 1rem;
+            font-weight: 600;
+        }
+
+        /* Risk Assessment Form */
+        .risk-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--background);
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .checkbox-item:hover {
+            border-color: var(--primary-light);
+            background: rgba(74, 140, 176, 0.05);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .checkbox-item label {
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(44, 95, 124, 0.3);
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 95, 124, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Risk Result */
+        .risk-result {
+            margin-top: 2rem;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 3px solid;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .risk-result.low {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border-color: var(--success);
+        }
+
+        .risk-result.moderate {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border-color: var(--warning);
+        }
+
+        .risk-result.high {
+            background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+            border-color: var(--danger);
+        }
+
+        .risk-result h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+        }
+
+        .risk-result .icon {
+            font-size: 2rem;
+        }
+
+        /* Symptom Checker */
+        .symptom-list {
+            display: grid;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .symptom-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: var(--background);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-light);
+            transition: all 0.3s ease;
+        }
+
+        .symptom-item:hover {
+            background: rgba(74, 140, 176, 0.08);
+            border-left-width: 6px;
+        }
+
+        .symptom-item.severe {
+            border-left-color: var(--danger);
+            background: rgba(230, 57, 70, 0.05);
+        }
+
+        .symptom-icon {
+            font-size: 1.5rem;
+            min-width: 30px;
+        }
+
+        .symptom-content h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .symptom-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(44, 95, 124, 0.1);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border-left: 4px solid var(--warning);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(244, 162, 97, 0.15);
+        }
+
+        .danger-box {
+            background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+            border-left: 4px solid var(--danger);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(230, 57, 70, 0.15);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        strong {
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .tabs {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .tab-button {
+                white-space: nowrap;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Emergency Banner */
+        .emergency-banner {
+            background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 600;
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 4px 20px rgba(211, 47, 47, 0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .emergency-banner a {
+            color: white;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+
+        /* Definition Box */
+        .definition-box {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+            border-left: 4px solid #9C27B0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(156, 39, 176, 0.1);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .feature-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>🩺 Preeclampsia Education & Assessment</h1>
+            </div>
+            <div class="disclaimer">
+                <strong>⚠️ Medical Disclaimer:</strong> This tool is for educational purposes only and does not replace professional medical advice. Always consult your healthcare provider for diagnosis and treatment decisions.
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="emergency-banner">
+            🚨 <strong>EMERGENCY:</strong> If you have severe headache, vision changes, severe abdominal pain, or difficulty breathing, call 911 or go to the emergency room immediately!
+        </div>
+
+        <nav class="tabs">
+            <button class="tab-button active" onclick="showTab('overview')">Overview</button>
+            <button class="tab-button" onclick="showTab('risk')">Risk Assessment</button>
+            <button class="tab-button" onclick="showTab('symptoms')">Symptoms</button>
+            <button class="tab-button" onclick="showTab('diagnosis')">Diagnosis</button>
+            <button class="tab-button" onclick="showTab('management')">Management</button>
+            <button class="tab-button" onclick="showTab('prevention')">Prevention</button>
+        </nav>
+
+        <!-- OVERVIEW TAB -->
+        <div id="overview" class="tab-content active">
+            <div class="card">
+                <h2>What is Preeclampsia?</h2>
+                <div class="definition-box">
+                    <p><strong>Preeclampsia</strong> is a pregnancy complication characterized by high blood pressure and signs of damage to organ systems, most often the liver and kidneys. It typically occurs after 20 weeks of pregnancy and can affect both mother and baby.</p>
+                </div>
+                
+                <h3>Key Facts</h3>
+                <div class="two-column">
+                    <div class="feature-card">
+                        <h4>📊 Prevalence</h4>
+                        <p>Affects 2-8% of pregnancies globally. In the United States, rates increased by 25% between 1987 and 2004.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>⚠️ Severity</h4>
+                        <p>Responsible for approximately 16% of maternal deaths in high-income countries and up to 26% in Latin America and the Caribbean.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>💰 Economic Impact</h4>
+                        <p>Estimated to cost $2.18 billion within the first 12 months of delivery in the United States (2012 data).</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>👶 Fetal Impact</h4>
+                        <p>Can lead to preterm delivery, fetal growth restriction, and other complications affecting the baby.</p>
+                    </div>
+                </div>
+
+                <h3>Understanding the Condition</h3>
+                <p>Preeclampsia develops when the placenta doesn't function properly, leading to problems with blood flow. This can cause:</p>
+                <ul>
+                    <li><strong>High blood pressure</strong> (hypertension) - Blood pressure of 140/90 mmHg or higher</li>
+                    <li><strong>Protein in urine</strong> (proteinuria) - Though not always present</li>
+                    <li><strong>Organ dysfunction</strong> - Affecting kidneys, liver, brain, or other organs</li>
+                    <li><strong>Blood abnormalities</strong> - Low platelet count or liver enzyme changes</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4>📚 Important to Know</h4>
+                    <p>Most cases of preeclampsia occur in healthy first-time mothers with no obvious risk factors. However, having risk factors increases your chances of developing the condition, which is why early prenatal care and monitoring are crucial.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RISK ASSESSMENT TAB -->
+        <div id="risk" class="tab-content">
+            <div class="card">
+                <h2>Preeclampsia Risk Assessment</h2>
+                <p>Select any factors that apply to you. This assessment is based on ACOG guidelines and helps identify your risk level.</p>
+
+                <form class="risk-form" id="riskForm">
+                    <div class="form-group">
+                        <label>High-Risk Factors:</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="prevPE" name="high" value="3" data-factor="History of preeclampsia">
+                                <label for="prevPE">History of preeclampsia</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="multifetal" name="high" value="3" data-factor="Multifetal gestation">
+                                <label for="multifetal">Multifetal gestation (twins, triplets)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="chronHTN" name="high" value="3" data-factor="Chronic hypertension">
+                                <label for="chronHTN">Chronic hypertension</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="diabetes" name="high" value="3" data-factor="Diabetes">
+                                <label for="diabetes">Type 1 or Type 2 diabetes</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="renal" name="high" value="3" data-factor="Kidney disease">
+                                <label for="renal">Kidney disease</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="autoimmune" name="high" value="3" data-factor="Autoimmune disease">
+                                <label for="autoimmune">Autoimmune disease (lupus, antiphospholipid syndrome)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Moderate-Risk Factors (2+ increases risk):</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="nulliparity" name="moderate" value="1" data-factor="First pregnancy">
+                                <label for="nulliparity">First pregnancy</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="obesity" name="moderate" value="1" data-factor="Obesity">
+                                <label for="obesity">Obesity (BMI > 30)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="familyHx" name="moderate" value="1" data-factor="Family history">
+                                <label for="familyHx">Family history (mother or sister)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="age35" name="moderate" value="1" data-factor="Age 35+">
+                                <label for="age35">Age 35 or older</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="african" name="moderate" value="1" data-factor="African American">
+                                <label for="african">African American race</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="lowSES" name="moderate" value="1" data-factor="Low SES">
+                                <label for="lowSES">Low socioeconomic status</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="gestDiab" name="moderate" value="1" data-factor="Gestational diabetes">
+                                <label for="gestDiab">Gestational diabetes</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="art" name="moderate" value="1" data-factor="ART">
+                                <label for="art">Assisted reproductive technology</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn">Calculate My Risk</button>
+                </form>
+
+                <div id="riskResult"></div>
+            </div>
+        </div>
+
+        <!-- SYMPTOMS TAB -->
+        <div id="symptoms" class="tab-content">
+            <div class="card">
+                <h2>Signs and Symptoms of Preeclampsia</h2>
+                
+                <div class="danger-box">
+                    <h3>⚠️ Severe Features - Seek Immediate Care:</h3>
+                    <p>If you experience any of these symptoms, contact your healthcare provider immediately or go to the emergency room:</p>
+                </div>
+
+                <div class="symptom-list">
+                    <div class="symptom-item severe">
+                        <div class="symptom-icon">🤕</div>
+                        <div class="symptom-content">
+                            <h4>Severe Headache</h4>
+                            <p>Persistent headache that doesn't respond to acetaminophen (Tylenol) and is not explained by other causes. May feel like the worst headache of your life.</p>
+                        </div>
+                    </div>
+
+                    <div class="symptom-item severe">
+                        <div class="symptom-icon">👁️</div>
+                        <div class="symptom-content">
+                            <h4>Vision Changes</h4>
+                            <p>Blurred vision, seeing spots or flashing lights, temporary loss of vision, light sensitivity, or seeing "floaters."</p>
+                        </div>
+                    </div>
+
+                    <div class="symptom-item severe">
+                        <div class="symptom-icon">🤢</div>
+                        <div class="symptom-content">
+                            <h4>Severe Abdominal Pain</h4>
+                            <p>Persistent pain in the right upper abdomen or below the ribs on the right side (where the liver is located). May also feel like severe heartburn or indigestion.</p>
+                        </div>
+                    </div>
+
+                    <div class="symptom-item severe">
+                        <div class="symptom-icon">😮‍💨</div>
+                        <div class="symptom-content">
+                            <h4>Shortness of Breath</h4>
+                            <p>Difficulty breathing, feeling like you can't catch your breath, or chest tightness. This may indicate fluid in the lungs (pulmonary edema).</p>
+                        </div>
+                    </div>
+
+                    <div class="symptom-item severe">
+                        <div class="symptom-icon">📈</div>
+                        <div class="symptom-content">
+                            <h4>Very High Blood Pressure</h4>
+                            <p>Systolic BP ≥ 160 mmHg or diastolic BP ≥ 110 mmHg. If you're monitoring at home and see these readings, contact your provider immediately.</p>
+                        </div>
+                    </div>
+
+                    <div class="symptom-item">
+                        <div class="symptom-icon">🫧</div>
+                        <div class="symptom-content">
+                            <h4>High Blood Pressure</h4>
+                            <p>Blood pressure of 140/90 mmHg or higher on two occasions at least 4 hours apart (if not on treatment already).</p>
+                        </div>
+                    </div>
+
+                    <div class="symptom-item">
+                        <div class="symptom-icon">💧</div>
+                        <div class="symptom-content">
+                            <h4>Protein in Urine</h4>
+                            <p>Your healthcare provider will check for this during prenatal visits. You won't notice this yourself.</p>
+                        </div>
+                    </div>
+
+                    <div class="symptom-item">
+                        <div class="symptom-icon">🦵</div>
+                        <div class="symptom-content">
+                            <h4>Sudden Swelling</h4>
+                            <p>Rapid swelling of hands, face, or feet, especially if it occurs suddenly. Some swelling is normal in pregnancy, but sudden or severe swelling should be evaluated.</p>
+                        </div>
+                    </div>
+
+                    <div class="symptom-item">
+                        <div class="symptom-icon">🤮</div>
+                        <div class="symptom-content">
+                            <h4>Nausea and Vomiting</h4>
+                            <p>Especially in the second half of pregnancy (after 20 weeks), or if accompanied by other symptoms. This can be a sign of HELLP syndrome.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h4>📞 When to Contact Your Healthcare Provider</h4>
+                    <ul>
+                        <li>Any of the severe symptoms listed above</li>
+                        <li>Blood pressure readings consistently above 140/90</li>
+                        <li>Rapid weight gain (more than 2 pounds in a week)</li>
+                        <li>Decreased fetal movement</li>
+                        <li>Any concerns about your symptoms</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>💡 Important Notes</h4>
+                    <p><strong>Preeclampsia can develop without warning signs.</strong> Some women with preeclampsia don't have symptoms until the condition is advanced. This is why regular prenatal care and blood pressure monitoring are essential.</p>
+                    <p><strong>Not all symptoms mean preeclampsia.</strong> Many symptoms of preeclampsia are common in normal pregnancy. Only your healthcare provider can diagnose preeclampsia through blood pressure checks, urine tests, and blood tests.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIAGNOSIS TAB -->
+        <div id="diagnosis" class="tab-content">
+            <div class="card">
+                <h2>How is Preeclampsia Diagnosed?</h2>
+                
+                <h3>Diagnostic Criteria</h3>
+                <p>Preeclampsia is diagnosed when a pregnant woman after 20 weeks of gestation has:</p>
+
+                <div class="definition-box">
+                    <h4>Blood Pressure Criteria:</h4>
+                    <ul>
+                        <li><strong>Systolic BP ≥ 140 mmHg</strong> OR <strong>Diastolic BP ≥ 90 mmHg</strong> on two occasions at least 4 hours apart</li>
+                        <li>OR <strong>Systolic BP ≥ 160 mmHg</strong> OR <strong>Diastolic BP ≥ 110 mmHg</strong> (can be confirmed within minutes to allow quick treatment)</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>AND Either:</h4>
+                    <ul>
+                        <li><strong>Proteinuria:</strong> ≥300 mg of protein in a 24-hour urine collection, OR protein/creatinine ratio ≥0.3, OR dipstick reading of 2+ (if other methods not available)</li>
+                    </ul>
+                    <p><strong>OR in the absence of proteinuria, new onset of any of the following:</strong></p>
+                    <ul>
+                        <li><strong>Low platelet count:</strong> Less than 100,000 × 10⁹/L</li>
+                        <li><strong>Kidney problems:</strong> Serum creatinine >1.1 mg/dL or doubling of creatinine</li>
+                        <li><strong>Liver problems:</strong> Liver enzymes elevated to twice normal levels</li>
+                        <li><strong>Pulmonary edema:</strong> Fluid in the lungs</li>
+                        <li><strong>Brain symptoms:</strong> New-onset headache not responsive to medication, OR visual disturbances</li>
+                    </ul>
+                </div>
+
+                <h3>Types of Preeclampsia</h3>
+                <div class="two-column">
+                    <div class="feature-card">
+                        <h4>Preeclampsia Without Severe Features</h4>
+                        <ul>
+                            <li>Blood pressure 140-159/90-109 mmHg</li>
+                            <li>May have proteinuria</li>
+                            <li>No severe symptoms</li>
+                            <li>Normal lab results</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Preeclampsia With Severe Features</h4>
+                        <ul>
+                            <li>Blood pressure ≥160/110 mmHg</li>
+                            <li>Severe symptoms (headache, vision changes, abdominal pain)</li>
+                            <li>Abnormal lab results (low platelets, high liver enzymes, kidney problems)</li>
+                            <li>Pulmonary edema</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>HELLP Syndrome</h3>
+                <div class="danger-box">
+                    <p>HELLP syndrome is a severe form of preeclampsia characterized by:</p>
+                    <ul>
+                        <li><strong>H</strong>emolysis (breakdown of red blood cells)</li>
+                        <li><strong>E</strong>levated <strong>L</strong>iver enzymes</li>
+                        <li><strong>L</strong>ow <strong>P</strong>latelet count</li>
+                    </ul>
+                    <p>HELLP syndrome can develop suddenly and requires immediate medical attention. Common symptoms include right upper abdominal pain, nausea, vomiting, and general malaise.</p>
+                </div>
+
+                <h3>Tests Your Provider May Order</h3>
+                <div class="symptom-list">
+                    <div class="symptom-item">
+                        <div class="symptom-icon">🩸</div>
+                        <div class="symptom-content">
+                            <h4>Blood Tests</h4>
+                            <p>Complete blood count (CBC) to check platelets, liver function tests (AST, ALT), kidney function (creatinine), and lactate dehydrogenase (LDH)</p>
+                        </div>
+                    </div>
+
+                    <div class="symptom-item">
+                        <div class="symptom-icon">💧</div>
+                        <div class="symptom-content">
+                            <h4>Urine Tests</h4>
+                            <p>24-hour urine collection or protein/creatinine ratio to check for proteinuria</p>
+                        </div>
+                    </div>
+
+                    <div class="symptom-item">
+                        <div class="symptom-icon">👶</div>
+                        <div class="symptom-content">
+                            <h4>Fetal Monitoring</h4>
+                            <p>Non-stress test (NST), biophysical profile, ultrasound to check baby's growth and amniotic fluid levels</p>
+                        </div>
+                    </div>
+
+                    <div class="symptom-item">
+                        <div class="symptom-icon">🫀</div>
+                        <div class="symptom-content">
+                            <h4>Blood Pressure Monitoring</h4>
+                            <p>Regular blood pressure checks at home or in clinic, sometimes continuous monitoring in hospital</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Important Information</h4>
+                    <p><strong>Preeclampsia can occur without proteinuria.</strong> About 20% of women with preeclampsia don't have protein in their urine. Your provider diagnoses based on the complete clinical picture.</p>
+                    <p><strong>Symptoms don't always predict severity.</strong> Some women with severe preeclampsia have minimal symptoms, while others with mild preeclampsia may have concerning symptoms. This is why regular monitoring is crucial.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MANAGEMENT TAB -->
+        <div id="management" class="tab-content">
+            <div class="card">
+                <h2>Managing Preeclampsia</h2>
+                
+                <div class="info-box">
+                    <h4>🎯 Treatment Goal</h4>
+                    <p>The only cure for preeclampsia is delivery. However, the timing of delivery depends on the severity of the condition, gestational age, and maternal and fetal wellbeing. Management aims to:</p>
+                    <ul>
+                        <li>Keep mother safe</li>
+                        <li>Prevent complications (seizures, stroke, organ damage)</li>
+                        <li>Allow the baby to develop as much as safely possible</li>
+                        <li>Deliver at the right time for both mother and baby</li>
+                    </ul>
+                </div>
+
+                <h3>Management Based on Severity and Timing</h3>
+
+                <div class="two-column">
+                    <div class="feature-card">
+                        <h4>Preeclampsia Without Severe Features</h4>
+                        <p><strong>At ≥37 weeks:</strong> Delivery is recommended</p>
+                        <p><strong>Before 37 weeks:</strong> Close monitoring with:</p>
+                        <ul>
+                            <li>Weekly or twice-weekly blood pressure checks</li>
+                            <li>Weekly blood tests (CBC, liver enzymes, creatinine)</li>
+                            <li>Weekly or twice-weekly fetal monitoring (NST)</li>
+                            <li>Ultrasound every 3-4 weeks for fetal growth</li>
+                            <li>May be managed at home if stable</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <h4>Preeclampsia With Severe Features</h4>
+                        <p><strong>At ≥34 weeks:</strong> Delivery recommended after stabilization</p>
+                        <p><strong>Before 34 weeks:</strong> Hospitalization with:</p>
+                        <ul>
+                            <li>Continuous or frequent blood pressure monitoring</li>
+                            <li>Antihypertensive medications if BP ≥160/110</li>
+                            <li>Magnesium sulfate to prevent seizures</li>
+                            <li>Corticosteroids for fetal lung maturity</li>
+                            <li>Close fetal monitoring</li>
+                            <li>Delivery when condition worsens or at 34 weeks</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Medications</h3>
+                <div class="symptom-list">
+                    <div class="symptom-item">
+                        <div class="symptom-icon">💊</div>
+                        <div class="symptom-content">
+                            <h4>Antihypertensive Medications</h4>
+                            <p><strong>For severe hypertension (BP ≥160/110):</strong></p>
+                            <ul>
+                                <li><strong>Labetalol</strong> (IV or oral) - Beta blocker that lowers blood pressure</li>
+                                <li><strong>Hydralazine</strong> (IV) - Vasodilator that relaxes blood vessels</li>
+                                <li><strong>Nifedipine</strong> (oral) - Calcium channel blocker</li>
+                            </ul>
+                            <p>Treatment should begin within 30-60 minutes of confirmed severe hypertension.</p>
+                        </div>
+                    </div>
+
+                    <div class="symptom-item">
+                        <div class="symptom-icon">🧪</div>
+                        <div class="symptom-content">
+                            <h4>Magnesium Sulfate</h4>
+                            <p><strong>For seizure prevention in severe preeclampsia/eclampsia:</strong></p>
+                            <ul>
+                                <li>Administered IV during labor, delivery, and 24 hours postpartum</li>
+                                <li>Reduces risk of eclamptic seizures by more than 50%</li>
+                                <li>Most effective treatment proven by research</li>
+                                <li>Requires monitoring of reflexes, breathing, and urine output</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="symptom-item">
+                        <div class="symptom-icon">💉</div>
+                        <div class="symptom-content">
+                            <h4>Corticosteroids</h4>
+                            <p><strong>For fetal lung maturity (if delivery expected before 34 weeks):</strong></p>
+                            <ul>
+                                <li>Betamethasone or dexamethasone</li>
+                                <li>Helps baby's lungs mature faster</li>
+                                <li>Reduces risk of respiratory distress syndrome and other complications</li>
+                                <li>Most effective when given 24 hours before delivery</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Delivery Considerations</h3>
+                <div class="warning-box">
+                    <h4>Indications for Immediate Delivery (regardless of gestational age):</h4>
+                    <ul>
+                        <li>Eclampsia (seizures)</li>
+                        <li>Uncontrolled severe hypertension despite medication</li>
+                        <li>HELLP syndrome</li>
+                        <li>Pulmonary edema (fluid in lungs)</li>
+                        <li>Placental abruption</li>
+                        <li>Non-reassuring fetal status</li>
+                        <li>Fetal demise</li>
+                        <li>Persistent severe symptoms</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Mode of Delivery:</h4>
+                    <p>The mode of delivery (vaginal vs. cesarean) is based on standard obstetric indications, not preeclampsia itself. Many women with preeclampsia can have a vaginal delivery if conditions are favorable.</p>
+                </div>
+
+                <h3>Postpartum Management</h3>
+                <p>Preeclampsia doesn't always resolve immediately after delivery:</p>
+                <ul>
+                    <li>Blood pressure monitoring continues for 72 hours postpartum (or longer if hypertension persists)</li>
+                    <li>Magnesium sulfate typically continued for 24 hours after delivery in severe cases</li>
+                    <li>Some women develop preeclampsia for the first time postpartum</li>
+                    <li>Blood pressure medications may be needed for weeks to months</li>
+                    <li>Close follow-up is essential, especially in the first week postpartum</li>
+                </ul>
+
+                <div class="danger-box">
+                    <h4>🚨 Postpartum Warning Signs</h4>
+                    <p>Contact your healthcare provider immediately if you experience after delivery:</p>
+                    <ul>
+                        <li>Severe headache</li>
+                        <li>Vision changes</li>
+                        <li>Severe abdominal pain</li>
+                        <li>Difficulty breathing</li>
+                        <li>High blood pressure (if monitoring at home)</li>
+                        <li>Confusion or altered mental status</li>
+                    </ul>
+                    <p>Eclampsia and stroke can occur in the postpartum period, especially within the first 48-72 hours.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PREVENTION TAB -->
+        <div id="prevention" class="tab-content">
+            <div class="card">
+                <h2>Preventing Preeclampsia</h2>
+                
+                <div class="info-box">
+                    <h4>Can Preeclampsia Be Prevented?</h4>
+                    <p>While there's no guaranteed way to prevent preeclampsia, research has identified interventions that can reduce risk in high-risk women. Early prenatal care and monitoring are essential for all pregnant women.</p>
+                </div>
+
+                <h3>Low-Dose Aspirin</h3>
+                <div class="definition-box">
+                    <h4>✅ Recommended Prevention Strategy</h4>
+                    <p><strong>Who should take aspirin:</strong> Women with high-risk factors (one or more) OR multiple moderate-risk factors</p>
+                    <p><strong>Dose:</strong> 81 mg daily (baby aspirin)</p>
+                    <p><strong>Timing:</strong> Start between 12-28 weeks of pregnancy (ideally before 16 weeks), continue until delivery</p>
+                    <p><strong>Effectiveness:</strong> Reduces risk of preeclampsia by 10-15%, with greater reduction in severe preeclampsia (40-50%) and preterm preeclampsia when started early</p>
+                </div>
+
+                <div class="two-column">
+                    <div class="feature-card">
+                        <h4>High-Risk Factors (Take aspirin if you have ONE or more):</h4>
+                        <ul>
+                            <li>History of preeclampsia</li>
+                            <li>Multifetal gestation (twins, triplets)</li>
+                            <li>Chronic hypertension</li>
+                            <li>Type 1 or Type 2 diabetes</li>
+                            <li>Kidney disease</li>
+                            <li>Autoimmune disease</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Moderate-Risk Factors (Take aspirin if you have TWO or more):</h4>
+                        <ul>
+                            <li>First pregnancy</li>
+                            <li>Obesity (BMI >30)</li>
+                            <li>Family history of preeclampsia</li>
+                            <li>Age ≥35 years</li>
+                            <li>African American race</li>
+                            <li>Low socioeconomic status</li>
+                            <li>Previous adverse pregnancy outcome</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Calcium Supplementation</h3>
+                <div class="symptom-item">
+                    <div class="symptom-icon">🥛</div>
+                    <div class="symptom-content">
+                        <h4>For Women with Low Calcium Intake</h4>
+                        <p>If your daily calcium intake is less than 600 mg/day, calcium supplementation (1.5-2 grams per day) may reduce preeclampsia risk. This is particularly relevant in developing countries but less applicable in the United States where calcium intake is typically adequate.</p>
+                    </div>
+                </div>
+
+                <h3>What Doesn't Work</h3>
+                <div class="warning-box">
+                    <h4>❌ Not Recommended (Insufficient Evidence)</h4>
+                    <p>The following have been studied but are NOT proven effective for preventing preeclampsia:</p>
+                    <ul>
+                        <li><strong>Vitamins C and E</strong> - No benefit shown in clinical trials</li>
+                        <li><strong>Fish oil supplements</strong> - No reduction in preeclampsia risk</li>
+                        <li><strong>Vitamin D</strong> - Insufficient evidence</li>
+                        <li><strong>Folic acid</strong> (beyond standard prenatal dose) - No additional benefit</li>
+                        <li><strong>Garlic supplements</strong> - No proven benefit</li>
+                        <li><strong>Bed rest</strong> - Not effective and may increase other risks</li>
+                        <li><strong>Sodium restriction</strong> - Not recommended</li>
+                        <li><strong>Metformin, sildenafil, statins</strong> - Still under investigation, not recommended outside research trials</li>
+                    </ul>
+                </div>
+
+                <h3>Lifestyle Modifications</h3>
+                <div class="two-column">
+                    <div class="feature-card">
+                        <h4>Before Pregnancy</h4>
+                        <ul>
+                            <li>Achieve healthy weight if possible</li>
+                            <li>Control chronic conditions (hypertension, diabetes)</li>
+                            <li>Optimize nutrition</li>
+                            <li>Discuss risks with your healthcare provider if you've had preeclampsia before</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>During Pregnancy</h4>
+                        <ul>
+                            <li>Attend all prenatal appointments</li>
+                            <li>Take prenatal vitamins as prescribed</li>
+                            <li>Monitor blood pressure as recommended</li>
+                            <li>Report new symptoms immediately</li>
+                            <li>Maintain healthy lifestyle (balanced diet, appropriate exercise)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Long-Term Cardiovascular Health</h3>
+                <div class="danger-box">
+                    <h4>⚠️ Important for Future Health</h4>
+                    <p>Women who have had preeclampsia have approximately <strong>2x higher risk</strong> of cardiovascular disease later in life, including:</p>
+                    <ul>
+                        <li>Chronic hypertension</li>
+                        <li>Heart disease</li>
+                        <li>Stroke</li>
+                        <li>Kidney disease</li>
+                    </ul>
+                    <p><strong>This risk is even higher if you had:</strong></p>
+                    <ul>
+                        <li>Preeclampsia requiring preterm delivery</li>
+                        <li>Recurrent preeclampsia in multiple pregnancies</li>
+                        <li>Early-onset preeclampsia (before 34 weeks)</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>💚 Reducing Long-Term Risk</h4>
+                    <p>After having preeclampsia, focus on cardiovascular health:</p>
+                    <ul>
+                        <li><strong>Regular check-ups:</strong> Monitor blood pressure and cardiovascular risk factors</li>
+                        <li><strong>Healthy weight:</strong> Achieve and maintain a healthy BMI</li>
+                        <li><strong>Exercise:</strong> Regular physical activity (aim for 150 minutes per week)</li>
+                        <li><strong>Healthy diet:</strong> Focus on fruits, vegetables, whole grains, lean protein</li>
+                        <li><strong>Don't smoke:</strong> Quit smoking if you smoke</li>
+                        <li><strong>Manage conditions:</strong> Control blood pressure, cholesterol, blood sugar</li>
+                        <li><strong>Inform providers:</strong> Always tell healthcare providers about your history of preeclampsia</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p><strong>Preeclampsia Education Tool</strong></p>
+            <p>Based on ACOG Practice Bulletin No. 222 - Gestational Hypertension and Preeclampsia</p>
+            <p>This tool is for educational purposes only. Always consult your healthcare provider for medical advice.</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">© 2025 | For emergency medical concerns, call 911 immediately</p>
+        </div>
+    </footer>
+
+    <script>
+        // Analytics Helper Functions
+        function trackEvent(eventName, eventParams) {
+            // Google Analytics 4 event tracking
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, eventParams);
+            }
+            
+            // Console log for debugging (remove in production)
+            console.log('Event tracked:', eventName, eventParams);
+        }
+
+        // Track page load
+        window.addEventListener('load', function() {
+            trackEvent('page_load', {
+                page_title: document.title,
+                page_location: window.location.href
+            });
+        });
+
+        // Tab Navigation with tracking
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+
+            // Track tab view
+            trackEvent('tab_view', {
+                tab_name: tabName,
+                timestamp: new Date().toISOString()
+            });
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Risk Assessment Calculator with tracking
+        document.getElementById('riskForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            let highRiskCount = 0;
+            let moderateRiskCount = 0;
+            let selectedFactors = [];
+
+            // Count high-risk factors
+            const highRiskBoxes = document.querySelectorAll('input[name="high"]:checked');
+            highRiskCount = highRiskBoxes.length;
+            highRiskBoxes.forEach(box => {
+                selectedFactors.push(box.getAttribute('data-factor'));
+            });
+
+            // Count moderate-risk factors
+            const moderateRiskBoxes = document.querySelectorAll('input[name="moderate"]:checked');
+            moderateRiskCount = moderateRiskBoxes.length;
+            moderateRiskBoxes.forEach(box => {
+                selectedFactors.push(box.getAttribute('data-factor'));
+            });
+
+            let riskLevel = '';
+            let riskClass = '';
+            let riskIcon = '';
+            let riskMessage = '';
+            let recommendations = '';
+
+            if (highRiskCount >= 1) {
+                riskLevel = 'High Risk';
+                riskClass = 'high';
+                riskIcon = '🔴';
+                riskMessage = 'You have one or more high-risk factors for preeclampsia.';
+                recommendations = `
+                    <h4>Recommended Actions:</h4>
+                    <ul>
+                        <li><strong>Start low-dose aspirin (81 mg daily)</strong> between 12-28 weeks (ideally before 16 weeks), after discussing with your healthcare provider</li>
+                        <li>Attend all prenatal appointments - regular monitoring is crucial</li>
+                        <li>Monitor blood pressure at home if recommended</li>
+                        <li>Learn warning signs and symptoms</li>
+                        <li>Contact your provider immediately if you develop any concerning symptoms</li>
+                        <li>Discuss delivery planning with your obstetric team</li>
+                    </ul>
+                `;
+            } else if (moderateRiskCount >= 2) {
+                riskLevel = 'Moderate to High Risk';
+                riskClass = 'moderate';
+                riskIcon = '🟡';
+                riskMessage = 'You have multiple moderate-risk factors for preeclampsia.';
+                recommendations = `
+                    <h4>Recommended Actions:</h4>
+                    <ul>
+                        <li><strong>Consider low-dose aspirin (81 mg daily)</strong> starting between 12-28 weeks - discuss with your healthcare provider</li>
+                        <li>Ensure consistent prenatal care</li>
+                        <li>Be vigilant about warning signs</li>
+                        <li>Monitor blood pressure as recommended by your provider</li>
+                        <li>Maintain a healthy lifestyle (balanced diet, appropriate exercise)</li>
+                        <li>Report any new or concerning symptoms promptly</li>
+                    </ul>
+                `;
+            } else {
+                riskLevel = 'Lower Risk';
+                riskClass = 'low';
+                riskIcon = '🟢';
+                riskMessage = 'Based on the factors selected, you appear to have a lower baseline risk for preeclampsia.';
+                recommendations = `
+                    <h4>Recommended Actions:</h4>
+                    <ul>
+                        <li>Continue regular prenatal care</li>
+                        <li>Learn the warning signs of preeclampsia</li>
+                        <li>Monitor your health throughout pregnancy</li>
+                        <li>Report any new symptoms to your healthcare provider</li>
+                        <li>Remember: preeclampsia can occur in women without obvious risk factors</li>
+                    </ul>
+                    <p><strong>Note:</strong> "Lower risk" does not mean "no risk." All pregnant women should be monitored for preeclampsia.</p>
+                `;
+            }
+
+            // Track risk assessment completion
+            trackEvent('risk_assessment_completed', {
+                risk_level: riskLevel,
+                high_risk_count: highRiskCount,
+                moderate_risk_count: moderateRiskCount,
+                total_factors: highRiskCount + moderateRiskCount,
+                selected_factors: selectedFactors.join(', '),
+                timestamp: new Date().toISOString()
+            });
+
+            const resultHTML = `
+                <div class="risk-result ${riskClass}">
+                    <h3><span class="icon">${riskIcon}</span> ${riskLevel}</h3>
+                    <p><strong>${riskMessage}</strong></p>
+                    ${recommendations}
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,255,255,0.5); border-radius: 6px;">
+                        <p><strong>Your Risk Profile:</strong></p>
+                        <p>High-risk factors: ${highRiskCount}</p>
+                        <p>Moderate-risk factors: ${moderateRiskCount}</p>
+                    </div>
+                    <div style="margin-top: 1rem; font-size: 0.9rem; font-style: italic;">
+                        <p>⚠️ This assessment is for educational purposes only. Please discuss your specific risk factors and prevention strategies with your healthcare provider.</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('riskResult').innerHTML = resultHTML;
+            document.getElementById('riskResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+
+        // Track checkbox selections
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                trackEvent('risk_factor_selected', {
+                    factor: this.getAttribute('data-factor'),
+                    category: this.name,
+                    selected: this.checked,
+                    timestamp: new Date().toISOString()
+                });
+            });
+        });
+
+        // Track time spent on each section
+        let sectionStartTime = Date.now();
+        let currentSection = 'overview';
+
+        function trackSectionTime() {
+            const timeSpent = (Date.now() - sectionStartTime) / 1000; // in seconds
+            if (timeSpent > 1) { // Only track if more than 1 second
+                trackEvent('section_time', {
+                    section: currentSection,
+                    time_seconds: Math.round(timeSpent),
+                    timestamp: new Date().toISOString()
+                });
+            }
+        }
+
+        // Override showTab to track section time
+        const originalShowTab = showTab;
+        showTab = function(tabName) {
+            trackSectionTime();
+            currentSection = tabName;
+            sectionStartTime = Date.now();
+            originalShowTab(tabName);
+        };
+
+        // Track section time before page unload
+        window.addEventListener('beforeunload', trackSectionTime);
+
+        // Track scroll depth
+        let maxScrollPercentage = 0;
+        window.addEventListener('scroll', function() {
+            const scrollPercentage = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
+            if (scrollPercentage > maxScrollPercentage && scrollPercentage % 25 === 0) {
+                maxScrollPercentage = scrollPercentage;
+                trackEvent('scroll_depth', {
+                    percentage: scrollPercentage,
+                    timestamp: new Date().toISOString()
+                });
+            }
+        });
+
+        // Track emergency banner clicks
+        document.querySelector('.emergency-banner').addEventListener('click', function() {
+            trackEvent('emergency_banner_click', {
+                timestamp: new Date().toISOString()
+            });
+        });
+    </script>
+</body>
+</html>
