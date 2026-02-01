@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preeclampsia Guide | Patient Education & Risk Assessment</title>
+    <title>Preeclampsia Education & Risk Assessment | Annie Rozenblyum, Christopher Zandieh, Wendy L. Kinzler MD FACOG, Martin R. Chavez MD FACOG</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     
     <!-- Google Analytics -->
@@ -65,10 +65,16 @@
 
         h1 {
             font-family: 'Crimson Pro', serif;
-            font-size: 2rem;
+            font-size: 2.75rem;
             font-weight: 700;
             color: var(--primary);
             letter-spacing: -0.5px;
+            text-align: center;
+        }
+
+        .container > h1,
+        header .container {
+            text-align: center;
         }
 
         .disclaimer {
@@ -401,7 +407,7 @@
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 1.5rem; }
+            h1 { font-size: 1.75rem; }
             .tabs {
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
@@ -417,6 +423,10 @@
     <header>
         <div class="container">
             <h1>🩺 Preeclampsia Education & Assessment</h1>
+            <p style="margin-top: 0.5rem; font-size: 0.95rem; color: var(--text-light);">
+                <strong>Developed by:</strong> Annie Rozenblyum, Christopher Zandieh<br>
+                <strong>Under supervision of:</strong> Wendy L. Kinzler, MD, FACOG | Martin R. Chavez, MD, FACOG
+            </p>
             <div class="disclaimer">
                 <strong>⚠️ Medical Disclaimer:</strong> This tool is for educational purposes only and does not replace professional medical advice. Always consult your healthcare provider for diagnosis and treatment decisions.
             </div>
@@ -443,7 +453,7 @@
         <div id="qa" class="tab-content active">
             <div class="card">
                 <h2>Ask Questions About Preeclampsia</h2>
-                <p>Ask any question about preeclampsia and get answers based on ACOG clinical guidelines.</p>
+                <p>Ask any question about preeclampsia and get answers based on ACOG Practice Bulletin No. 222: Gestational Hypertension and Preeclampsia clinical guidelines.</p>
                 
                 <div class="warning-box" style="margin-top: 1.5rem;">
                     <strong>⚠️ Important:</strong> This chatbot provides educational information. It cannot diagnose conditions or provide personalized medical advice. Always consult your healthcare provider for medical concerns.
@@ -454,15 +464,16 @@
                         <div class="message assistant">
                             <div class="message-avatar">🩺</div>
                             <div class="message-content">
-                                <p>Hello! I'm here to help answer your questions about preeclampsia based on ACOG clinical guidelines.</p>
-                                <p>You can ask me about:</p>
+                                <p>Hello! I'm here to provide educational information about preeclampsia based strictly on <strong>ACOG Practice Bulletin No. 222: Gestational Hypertension and Preeclampsia</strong>.</p>
+                                <p><strong>I can answer questions about:</strong></p>
                                 <ul>
                                     <li>Symptoms and warning signs</li>
-                                    <li>Risk factors and prevention</li>
-                                    <li>Diagnosis and testing</li>
-                                    <li>Treatment and management</li>
-                                    <li>Long-term health effects</li>
+                                    <li>Risk factors and prevention strategies</li>
+                                    <li>Diagnostic criteria and testing</li>
+                                    <li>General management approaches</li>
+                                    <li>Long-term health implications</li>
                                 </ul>
+                                <p><strong>⚠️ Important:</strong> I provide general educational information only, not personal medical advice. For questions about your specific situation, always consult your obstetrical care provider.</p>
                                 <p><strong>What would you like to know?</strong></p>
                             </div>
                         </div>
@@ -970,8 +981,11 @@
     <footer>
         <div class="container">
             <p><strong>Preeclampsia Education Tool</strong></p>
-            <p>Based on ACOG Practice Bulletin No. 222</p>
-            <p style="margin-top:1rem;font-size:0.9rem;">© 2025 | For emergency concerns, call 911 immediately</p>
+            <p style="margin-top: 0.5rem;">Developed by Annie Rozenblyum and Christopher Zandieh</p>
+            <p>Under the supervision of Wendy L. Kinzler, MD, FACOG and Martin R. Chavez, MD, FACOG</p>
+            <p style="margin-top: 1rem;">Based on ACOG Practice Bulletin No. 222 - Gestational Hypertension and Preeclampsia</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">© 2025 | For emergency concerns, call 911 immediately</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">Last Updated: February 1, 2025 | Version 1.2.1</p>
         </div>
     </footer>
 
@@ -1108,7 +1122,45 @@
                     body: JSON.stringify({
                         model: 'claude-sonnet-4-20250514',
                         max_tokens: 1000,
-                        system: `You are a medical education assistant specializing in preeclampsia based on ACOG Practice Bulletin No. 222. Provide accurate, evidence-based information. Always remind users this is educational, not medical advice. For emergency symptoms (severe headache, vision changes, severe abdominal pain, breathing difficulty), immediately advise calling 911. Be clear, compassionate, and patient-friendly.`,
+                        system: `You are a medical education assistant that ONLY provides information based on ACOG (American College of Obstetricians and Gynecologists) Practice Bulletin No. 222: Gestational Hypertension and Preeclampsia.
+
+CRITICAL INSTRUCTIONS:
+1. SCOPE LIMITATION: You may ONLY answer questions that can be directly answered using information from ACOG Practice Bulletin No. 222: Gestational Hypertension and Preeclampsia. This includes:
+   - Definition and pathophysiology of preeclampsia
+   - Risk factors (high-risk and moderate-risk)
+   - Symptoms and warning signs
+   - Diagnostic criteria (blood pressure thresholds, proteinuria, organ dysfunction markers)
+   - Management strategies (timing of delivery, medications, monitoring)
+   - Prevention strategies (low-dose aspirin recommendations)
+   - HELLP syndrome
+   - Postpartum preeclampsia
+   - Long-term cardiovascular risks
+
+2. OUT OF SCOPE - REFER TO PROVIDER: If a question is about:
+   - Personal medical advice or individual case management
+   - Medications not mentioned in ACOG Practice Bulletin No. 222
+   - Conditions other than preeclampsia/gestational hypertension
+   - Specific lab value interpretation for individual patients
+   - Treatment decisions for specific cases
+   - Any topic not covered in ACOG Practice Bulletin No. 222: Gestational Hypertension and Preeclampsia
+   
+   YOU MUST respond with: "I can only provide general educational information based on ACOG Practice Bulletin No. 222: Gestational Hypertension and Preeclampsia. For questions about your specific situation, please consult your obstetrical care provider who can review your individual medical history and circumstances."
+
+3. EMERGENCY PROTOCOL: If the person describes ANY of these symptoms, IMMEDIATELY state:
+   "🚨 EMERGENCY: These symptoms require immediate medical attention. Please call 911 or go to the emergency room right away. Do not wait to contact your provider."
+   Emergency symptoms: severe headache, vision changes (blurred vision, seeing spots, flashing lights), severe abdominal pain (especially upper right), difficulty breathing, chest pain, severe swelling, confusion, seizures.
+
+4. EDUCATIONAL DISCLAIMER: Begin EVERY response with one of these reminders:
+   - "Based on ACOG guidelines, [answer]... Remember, this is educational information only. Always consult your obstetrical care provider for medical advice."
+   - "According to ACOG Practice Bulletin No. 222: Gestational Hypertension and Preeclampsia, [answer]... For personalized medical guidance, please speak with your OB provider."
+
+5. TONE: Be compassionate, clear, and use patient-friendly language. Avoid medical jargon when possible, but when necessary, explain terms simply.
+
+6. CITATION: When providing information, mention it's from "ACOG Practice Bulletin No. 222: Gestational Hypertension and Preeclampsia" to establish credibility and source.
+
+7. UNKNOWN INFORMATION: If asked something you're genuinely unsure about or that goes beyond the ACOG bulletin, say: "I don't have specific information about that in the ACOG guidelines I'm trained on. Please discuss this question with your obstetrical care provider who can give you accurate, personalized information."
+
+REMEMBER: Your primary purpose is education based ONLY on ACOG Practice Bulletin No. 222: Gestational Hypertension and Preeclampsia, not individual medical advice. When in doubt, refer to the obstetrical care provider.`,
                         messages: [
                             ...conversationHistory,
                             { role: 'user', content: message }
@@ -1135,7 +1187,7 @@
                 }
             } catch (error) {
                 console.error('Error:', error);
-                addMessage('assistant', 'I apologize, but I\'m having trouble connecting. Please explore the educational content in the other tabs, or contact your healthcare provider for urgent concerns.');
+                addMessage('assistant', 'I apologize, but I\'m having trouble connecting right now. Please explore the educational content in the other tabs of this tool. For any medical questions or concerns, please contact your obstetrical care provider. For emergency symptoms, call 911 immediately.');
                 if (typeof gtag !== 'undefined') {
                     gtag('event', 'qa_error', { error_message: error.message, timestamp: new Date().toISOString() });
                 }
