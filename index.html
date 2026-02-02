@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preeclampsia Education & Risk Assessment | Annie Rozenblyum, Christopher Zandieh, Wendy L. Kinzler MD FACOG, Martin R. Chavez MD FACOG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2T7W17L9P2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-2T7W17L9P2');
+    </script>
+
+    <style>
+        :root {
+            --primary: #2C5F7C;
+            --primary-light: #4A8CB0;
+            --primary-dark: #1A3A4D;
+            --accent: #E87461;
+            --accent-light: #FFB4A8;
+            --background: #FDFCFA;
+            --surface: #FFFFFF;
+            --text: #2A2A2A;
+            --text-light: #666666;
+            --border: #E8E4DF;
+            --success: #52B788;
+            --warning: #F4A261;
+            --danger: #E63946;
+            --shadow: rgba(44, 95, 124, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, #FDFCFA 0%, #F5F3EE 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--surface);
+            border-bottom: 3px solid var(--primary);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+            text-align: center;
+        }
+
+        .container > h1,
+        header .container {
+            text-align: center;
+        }
+
+        .disclaimer {
+            background: linear-gradient(135deg, #FFF5F2 0%, #FFE8E0 100%);
+            padding: 1rem 1.5rem;
+            border-left: 4px solid var(--accent);
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 10px rgba(232, 116, 97, 0.1);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .tab-button {
+            background: transparent;
+            border: none;
+            padding: 1rem 1.5rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button:hover {
+            color: var(--primary);
+            background: rgba(44, 95, 124, 0.05);
+        }
+
+        .tab-button.active {
+            color: var(--primary);
+            border-bottom-color: var(--accent);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .card h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .card h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin: 1.5rem 0 1rem;
+            font-weight: 600;
+        }
+
+        /* Q&A Chat Interface */
+        .qa-container {
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+            background: var(--surface);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            background: var(--background);
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1rem;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .message.user .message-avatar {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+
+        .message.assistant .message-avatar {
+            background: linear-gradient(135deg, var(--accent) 0%, #D65A49 100%);
+        }
+
+        .message-content {
+            flex: 1;
+            background: var(--surface);
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            color: white;
+        }
+
+        .message.assistant .message-content {
+            border: 1px solid var(--border);
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .typing-indicator.active {
+            display: flex;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        .chat-input-container {
+            padding: 1.5rem;
+            border-top: 2px solid var(--border);
+            background: var(--surface);
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .send-button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .send-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 95, 124, 0.4);
+        }
+
+        .send-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .suggested-questions {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .suggested-questions h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .suggested-question {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .suggested-question:hover {
+            background: var(--primary-light);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border-left: 4px solid var(--warning);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .danger-box {
+            background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+            border-left: 4px solid var(--danger);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .emergency-banner {
+            background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 600;
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 4px 20px rgba(211, 47, 47, 0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        strong {
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.75rem; }
+            .tabs {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .tab-button { white-space: nowrap; }
+            .qa-container { height: 500px; }
+            .chat-input-wrapper { flex-direction: column; }
+            .send-button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🩺 Preeclampsia Education & Assessment</h1>
+            <p style="margin-top: 0.5rem; font-size: 0.95rem; color: var(--text-light);">
+                <strong>Developed by:</strong> Annie Rozenblyum, Christopher Zandieh<br>
+                <strong>Under supervision of:</strong> Wendy L. Kinzler, MD, FACOG | Martin R. Chavez, MD, FACOG
+            </p>
+            <div class="disclaimer">
+                <strong>⚠️ Medical Disclaimer:</strong> This tool is for educational purposes only and does not replace professional medical advice. Always consult your healthcare provider for diagnosis and treatment decisions.
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="emergency-banner">
+            🚨 <strong>EMERGENCY:</strong> If you have severe headache, vision changes, severe abdominal pain, or difficulty breathing, call 911 or go to the emergency room immediately!
+        </div>
+
+        <nav class="tabs">
+            <button class="tab-button active" onclick="showTab('qa')">💬 Ask Questions</button>
+            <button class="tab-button" onclick="showTab('bmi')">📏 BMI Calculator</button>
+            <button class="tab-button" onclick="showTab('overview')">Overview</button>
+            <button class="tab-button" onclick="showTab('risk')">Risk Assessment</button>
+            <button class="tab-button" onclick="showTab('symptoms')">Symptoms</button>
+            <button class="tab-button" onclick="showTab('diagnosis')">Diagnosis</button>
+            <button class="tab-button" onclick="showTab('management')">Management</button>
+            <button class="tab-button" onclick="showTab('prevention')">Prevention</button>
+        </nav>
+
+        <!-- Q&A TAB -->
+        <div id="qa" class="tab-content active">
+            <div class="card">
+                <h2>Ask Questions About Preeclampsia</h2>
+                <p>Ask any question about preeclampsia and get answers based on ACOG Practice Bulletin No. 222: Gestational Hypertension and Preeclampsia clinical guidelines.</p>
+                
+                <div class="warning-box" style="margin-top: 1.5rem;">
+                    <strong>⚠️ Important:</strong> This chatbot provides educational information. It cannot diagnose conditions or provide personalized medical advice. Always consult your healthcare provider for medical concerns.
+                </div>
+
+                <div class="qa-container" style="margin-top: 1.5rem;">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message assistant">
+                            <div class="message-avatar">🩺</div>
+                            <div class="message-content">
+                                <p>Hello! I'm here to provide educational information about preeclampsia based strictly on <strong>ACOG Practice Bulletin No. 222: Gestational Hypertension and Preeclampsia</strong>.</p>
+                                <p><strong>I can answer questions about:</strong></p>
+                                <ul>
+                                    <li>Symptoms and warning signs</li>
+                                    <li>Risk factors and prevention strategies</li>
+                                    <li>Diagnostic criteria and testing</li>
+                                    <li>General management approaches</li>
+                                    <li>Long-term health implications</li>
+                                </ul>
+                                <p><strong>⚠️ Important:</strong> I provide general educational information only, not personal medical advice. For questions about your specific situation, always consult your obstetrical care provider.</p>
+                                <p><strong>What would you like to know?</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="typing-indicator" id="typingIndicator">
+                        <div class="typing-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span>Thinking...</span>
+                    </div>
+                    <div class="chat-input-container">
+                        <div class="chat-input-wrapper">
+                            <input 
+                                type="text" 
+                                class="chat-input" 
+                                id="chatInput" 
+                                placeholder="Ask a question about preeclampsia..."
+                                onkeypress="if(event.key==='Enter') sendMessage()"
+                            >
+                            <button class="send-button" onclick="sendMessage()" id="sendButton">
+                                Send
+                            </button>
+                        </div>
+                        <div class="suggested-questions">
+                            <h4>💡 Suggested questions:</h4>
+                            <span class="suggested-question" onclick="askQuestion(this.textContent)">What are the warning signs?</span>
+                            <span class="suggested-question" onclick="askQuestion(this.textContent)">When should I take aspirin?</span>
+                            <span class="suggested-question" onclick="askQuestion(this.textContent)">What is HELLP syndrome?</span>
+                            <span class="suggested-question" onclick="askQuestion(this.textContent)">Can it happen after delivery?</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box" style="margin-top: 1.5rem;">
+                    <h4>🔒 Privacy Note</h4>
+                    <p>Your questions are processed securely and not stored with personal information.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BMI CALCULATOR TAB -->
+        <div id="bmi" class="tab-content">
+            <div class="card">
+                <h2>BMI Calculator</h2>
+                <p>Body Mass Index (BMI) is used to categorize weight status. Obesity (BMI > 30) is a moderate risk factor for preeclampsia.</p>
+
+                <div class="info-box" style="margin-top: 1.5rem;">
+                    <h4>📊 BMI Categories:</h4>
+                    <ul>
+                        <li><strong>Underweight:</strong> BMI less than 18.5</li>
+                        <li><strong>Normal weight:</strong> BMI 18.5 - 24.9</li>
+                        <li><strong>Overweight:</strong> BMI 25 - 29.9</li>
+                        <li><strong>Obese:</strong> BMI 30 or greater (moderate risk factor for preeclampsia)</li>
+                    </ul>
+                </div>
+
+                <div style="max-width: 600px; margin: 2rem auto;">
+                    <form id="bmiForm" style="display: grid; gap: 1.5rem;">
+                        <div style="display: grid; gap: 0.5rem;">
+                            <label style="font-weight: 600; color: var(--text);">Unit System:</label>
+                            <div style="display: flex; gap: 1rem;">
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="radio" name="unitSystem" value="imperial" checked onchange="toggleUnits()">
+                                    <span>Imperial (lbs/inches)</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="radio" name="unitSystem" value="metric" onchange="toggleUnits()">
+                                    <span>Metric (kg/cm)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Imperial Units -->
+                        <div id="imperialInputs" style="display: grid; gap: 1rem;">
+                            <div style="display: grid; gap: 0.5rem;">
+                                <label style="font-weight: 600; color: var(--text);">Weight (pounds):</label>
+                                <input 
+                                    type="number" 
+                                    id="weightLbs" 
+                                    placeholder="e.g., 150"
+                                    min="50"
+                                    max="500"
+                                    style="padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem;"
+                                >
+                            </div>
+                            <div style="display: grid; gap: 0.5rem;">
+                                <label style="font-weight: 600; color: var(--text);">Height:</label>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div>
+                                        <input 
+                                            type="number" 
+                                            id="heightFt" 
+                                            placeholder="Feet (e.g., 5)"
+                                            min="3"
+                                            max="8"
+                                            style="padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; width: 100%;"
+                                        >
+                                    </div>
+                                    <div>
+                                        <input 
+                                            type="number" 
+                                            id="heightIn" 
+                                            placeholder="Inches (e.g., 6)"
+                                            min="0"
+                                            max="11"
+                                            style="padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem; width: 100%;"
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Metric Units -->
+                        <div id="metricInputs" style="display: none; grid-gap: 1rem;">
+                            <div style="display: grid; gap: 0.5rem;">
+                                <label style="font-weight: 600; color: var(--text);">Weight (kilograms):</label>
+                                <input 
+                                    type="number" 
+                                    id="weightKg" 
+                                    placeholder="e.g., 68"
+                                    min="20"
+                                    max="300"
+                                    step="0.1"
+                                    style="padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem;"
+                                >
+                            </div>
+                            <div style="display: grid; gap: 0.5rem;">
+                                <label style="font-weight: 600; color: var(--text);">Height (centimeters):</label>
+                                <input 
+                                    type="number" 
+                                    id="heightCm" 
+                                    placeholder="e.g., 165"
+                                    min="100"
+                                    max="250"
+                                    step="0.1"
+                                    style="padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem;"
+                                >
+                            </div>
+                        </div>
+
+                        <button 
+                            type="submit" 
+                            style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border: none; padding: 1rem 2rem; font-size: 1.1rem; font-weight: 600; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;"
+                        >
+                            Calculate BMI
+                        </button>
+                    </form>
+
+                    <div id="bmiResult" style="margin-top: 2rem;"></div>
+                </div>
+
+                <div class="warning-box" style="margin-top: 2rem;">
+                    <h4>⚠️ Important Notes:</h4>
+                    <ul>
+                        <li><strong>BMI is a screening tool,</strong> not a diagnostic tool. It doesn't measure body fat directly.</li>
+                        <li><strong>During pregnancy,</strong> your BMI will increase. This calculator is best used before pregnancy or early in pregnancy.</li>
+                        <li><strong>Obesity (BMI > 30)</strong> is a moderate risk factor for preeclampsia. If you have 2+ moderate risk factors, talk to your doctor about low-dose aspirin.</li>
+                        <li><strong>Consult your healthcare provider</strong> about healthy weight goals for your pregnancy.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- OVERVIEW TAB -->
+        <div id="overview" class="tab-content">
+            <div class="card">
+                <h2>What is Preeclampsia?</h2>
+                <p><strong>Preeclampsia</strong> is a pregnancy complication characterized by high blood pressure and signs of damage to organ systems, most often the liver and kidneys. It typically occurs after 20 weeks of pregnancy and can affect both mother and baby.</p>
+                
+                <h3>Key Facts</h3>
+                <ul>
+                    <li><strong>Prevalence:</strong> Affects 2-8% of pregnancies globally</li>
+                    <li><strong>Mortality:</strong> Responsible for 16% of maternal deaths in high-income countries</li>
+                    <li><strong>Cost:</strong> Estimated $2.18 billion annually in the US</li>
+                    <li><strong>Impact:</strong> Can lead to preterm delivery and fetal complications</li>
+                </ul>
+
+                <h3>Understanding the Condition</h3>
+                <p>Preeclampsia develops when the placenta doesn't function properly, leading to:</p>
+                <ul>
+                    <li><strong>High blood pressure</strong> (≥140/90 mmHg)</li>
+                    <li><strong>Protein in urine</strong> (proteinuria) - though not always present</li>
+                    <li><strong>Organ dysfunction</strong> - affecting kidneys, liver, brain</li>
+                    <li><strong>Blood abnormalities</strong> - low platelet count or liver enzyme changes</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4>📚 Important to Know</h4>
+                    <p>Most cases of preeclampsia occur in healthy first-time mothers with no obvious risk factors. This is why early prenatal care and monitoring are crucial for all pregnant women.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RISK ASSESSMENT TAB -->
+        <div id="risk" class="tab-content">
+            <div class="card">
+                <h2>Preeclampsia Risk Assessment</h2>
+                <p>Select any factors that apply to you. This assessment is based on ACOG guidelines.</p>
+
+                <form class="risk-form" id="riskForm" style="display:grid;gap:1.5rem;">
+                    <div class="form-group" style="display:flex;flex-direction:column;gap:0.5rem;">
+                        <label style="font-weight:600;">High-Risk Factors:</label>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;">
+                            <label style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--background);border-radius:8px;border:2px solid var(--border);cursor:pointer;">
+                                <input type="checkbox" name="high" value="3" data-factor="History of preeclampsia">
+                                <span>History of preeclampsia</span>
+                            </label>
+                            <label style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--background);border-radius:8px;border:2px solid var(--border);cursor:pointer;">
+                                <input type="checkbox" name="high" value="3" data-factor="Multifetal gestation">
+                                <span>Multifetal gestation (twins, triplets)</span>
+                            </label>
+                            <label style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--background);border-radius:8px;border:2px solid var(--border);cursor:pointer;">
+                                <input type="checkbox" name="high" value="3" data-factor="Chronic hypertension">
+                                <span>Chronic hypertension</span>
+                            </label>
+                            <label style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--background);border-radius:8px;border:2px solid var(--border);cursor:pointer;">
+                                <input type="checkbox" name="high" value="3" data-factor="Diabetes">
+                                <span>Type 1 or Type 2 diabetes</span>
+                            </label>
+                            <label style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--background);border-radius:8px;border:2px solid var(--border);cursor:pointer;">
+                                <input type="checkbox" name="high" value="3" data-factor="Kidney disease">
+                                <span>Kidney disease</span>
+                            </label>
+                            <label style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--background);border-radius:8px;border:2px solid var(--border);cursor:pointer;">
+                                <input type="checkbox" name="high" value="3" data-factor="Autoimmune disease">
+                                <span>Autoimmune disease</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="display:flex;flex-direction:column;gap:0.5rem;">
+                        <label style="font-weight:600;">Moderate-Risk Factors (2+ increases risk):</label>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;">
+                            <label style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--background);border-radius:8px;border:2px solid var(--border);cursor:pointer;">
+                                <input type="checkbox" name="moderate" value="1" data-factor="First pregnancy">
+                                <span>First pregnancy</span>
+                            </label>
+                            <label style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--background);border-radius:8px;border:2px solid var(--border);cursor:pointer;">
+                                <input type="checkbox" name="moderate" value="1" data-factor="Obesity">
+                                <span>Obesity (BMI > 30)</span>
+                            </label>
+                            <label style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--background);border-radius:8px;border:2px solid var(--border);cursor:pointer;">
+                                <input type="checkbox" name="moderate" value="1" data-factor="Family history">
+                                <span>Family history (mother or sister)</span>
+                            </label>
+                            <label style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--background);border-radius:8px;border:2px solid var(--border);cursor:pointer;">
+                                <input type="checkbox" name="moderate" value="1" data-factor="Age 35+">
+                                <span>Age 35 or older</span>
+                            </label>
+                            <label style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--background);border-radius:8px;border:2px solid var(--border);cursor:pointer;">
+                                <input type="checkbox" name="moderate" value="1" data-factor="African American">
+                                <span>African American race</span>
+                            </label>
+                            <label style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--background);border-radius:8px;border:2px solid var(--border);cursor:pointer;">
+                                <input type="checkbox" name="moderate" value="1" data-factor="Low SES">
+                                <span>Low socioeconomic status</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" style="background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:white;border:none;padding:1rem 2rem;font-size:1.1rem;font-weight:600;border-radius:8px;cursor:pointer;">
+                        Calculate My Risk
+                    </button>
+                </form>
+
+                <div id="riskResult"></div>
+            </div>
+        </div>
+
+        <!-- SYMPTOMS TAB -->
+        <div id="symptoms" class="tab-content">
+            <div class="card">
+                <h2>Signs and Symptoms of Preeclampsia</h2>
+                
+                <div class="danger-box">
+                    <h3>⚠️ Severe Features - Seek Immediate Care:</h3>
+                    <p>Contact your healthcare provider immediately or go to the emergency room if you experience:</p>
+                </div>
+
+                <div style="display:grid;gap:1rem;margin:1.5rem 0;">
+                    <div style="display:flex;gap:1rem;padding:1.25rem;background:rgba(230,57,70,0.05);border-radius:8px;border-left:4px solid var(--danger);">
+                        <div style="font-size:1.5rem;min-width:30px;">🤕</div>
+                        <div>
+                            <h4 style="color:var(--primary-dark);margin-bottom:0.5rem;font-weight:600;">Severe Headache</h4>
+                            <p style="color:var(--text-light);font-size:0.95rem;">Persistent headache that doesn't respond to medication. May feel like the worst headache of your life.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display:flex;gap:1rem;padding:1.25rem;background:rgba(230,57,70,0.05);border-radius:8px;border-left:4px solid var(--danger);">
+                        <div style="font-size:1.5rem;min-width:30px;">👁️</div>
+                        <div>
+                            <h4 style="color:var(--primary-dark);margin-bottom:0.5rem;font-weight:600;">Vision Changes</h4>
+                            <p style="color:var(--text-light);font-size:0.95rem;">Blurred vision, seeing spots or flashing lights, temporary loss of vision, or light sensitivity.</p>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;gap:1rem;padding:1.25rem;background:rgba(230,57,70,0.05);border-radius:8px;border-left:4px solid var(--danger);">
+                        <div style="font-size:1.5rem;min-width:30px;">🤢</div>
+                        <div>
+                            <h4 style="color:var(--primary-dark);margin-bottom:0.5rem;font-weight:600;">Severe Abdominal Pain</h4>
+                            <p style="color:var(--text-light);font-size:0.95rem;">Persistent pain in the right upper abdomen or below the ribs. May feel like severe heartburn.</p>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;gap:1rem;padding:1.25rem;background:rgba(230,57,70,0.05);border-radius:8px;border-left:4px solid var(--danger);">
+                        <div style="font-size:1.5rem;min-width:30px;">😮‍💨</div>
+                        <div>
+                            <h4 style="color:var(--primary-dark);margin-bottom:0.5rem;font-weight:600;">Shortness of Breath</h4>
+                            <p style="color:var(--text-light);font-size:0.95rem;">Difficulty breathing or chest tightness. May indicate fluid in the lungs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h4>📞 When to Contact Your Healthcare Provider</h4>
+                    <ul>
+                        <li>Any of the severe symptoms listed above</li>
+                        <li>Blood pressure readings consistently above 140/90</li>
+                        <li>Rapid weight gain (more than 2 pounds in a week)</li>
+                        <li>Decreased fetal movement</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>💡 Important Notes</h4>
+                    <p><strong>Preeclampsia can develop without warning signs.</strong> Some women don't have symptoms until the condition is advanced. This is why regular prenatal care is essential.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIAGNOSIS TAB -->
+        <div id="diagnosis" class="tab-content">
+            <div class="card">
+                <h2>How is Preeclampsia Diagnosed?</h2>
+                
+                <h3>Diagnostic Criteria</h3>
+                <p>Preeclampsia is diagnosed after 20 weeks of gestation when a woman has:</p>
+
+                <div style="background:linear-gradient(135deg,#F3E5F5 0%,#E1BEE7 100%);border-left:4px solid #9C27B0;padding:1.5rem;border-radius:8px;margin:1.5rem 0;">
+                    <h4>Blood Pressure Criteria:</h4>
+                    <ul>
+                        <li><strong>Systolic BP ≥ 140 mmHg</strong> OR <strong>Diastolic BP ≥ 90 mmHg</strong> on two occasions at least 4 hours apart</li>
+                        <li>OR <strong>Systolic BP ≥ 160 mmHg</strong> OR <strong>Diastolic BP ≥ 110 mmHg</strong></li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>AND Either:</h4>
+                    <ul>
+                        <li><strong>Proteinuria:</strong> ≥300 mg of protein in 24-hour urine OR protein/creatinine ratio ≥0.3</li>
+                    </ul>
+                    <p><strong>OR in absence of proteinuria, new onset of:</strong></p>
+                    <ul>
+                        <li><strong>Low platelet count:</strong> Less than 100,000 × 10⁹/L</li>
+                        <li><strong>Kidney problems:</strong> Serum creatinine >1.1 mg/dL</li>
+                        <li><strong>Liver problems:</strong> Liver enzymes elevated to twice normal</li>
+                        <li><strong>Pulmonary edema</strong></li>
+                        <li><strong>Brain symptoms:</strong> New headache or visual disturbances</li>
+                    </ul>
+                </div>
+
+                <h3>Types of Preeclampsia</h3>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin:1.5rem 0;">
+                    <div style="background:var(--surface);padding:1.5rem;border-radius:8px;border:2px solid var(--border);">
+                        <h4 style="color:var(--primary);margin-bottom:0.75rem;">Without Severe Features</h4>
+                        <ul>
+                            <li>BP 140-159/90-109 mmHg</li>
+                            <li>May have proteinuria</li>
+                            <li>No severe symptoms</li>
+                            <li>Normal lab results</li>
+                        </ul>
+                    </div>
+                    <div style="background:var(--surface);padding:1.5rem;border-radius:8px;border:2px solid var(--border);">
+                        <h4 style="color:var(--primary);margin-bottom:0.75rem;">With Severe Features</h4>
+                        <ul>
+                            <li>BP ≥160/110 mmHg</li>
+                            <li>Severe symptoms</li>
+                            <li>Abnormal lab results</li>
+                            <li>Pulmonary edema</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MANAGEMENT TAB -->
+        <div id="management" class="tab-content">
+            <div class="card">
+                <h2>Managing Preeclampsia</h2>
+                
+                <div class="info-box">
+                    <h4>🎯 Treatment Goal</h4>
+                    <p>The only cure for preeclampsia is delivery. Management aims to keep mother safe and allow baby to develop as much as safely possible.</p>
+                </div>
+
+                <h3>Management Based on Severity</h3>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin:1.5rem 0;">
+                    <div style="background:var(--surface);padding:1.5rem;border-radius:8px;border:2px solid var(--border);">
+                        <h4 style="color:var(--primary);margin-bottom:0.75rem;">Without Severe Features</h4>
+                        <p><strong>At ≥37 weeks:</strong> Delivery recommended</p>
+                        <p><strong>Before 37 weeks:</strong> Close monitoring with:</p>
+                        <ul>
+                            <li>Weekly blood pressure checks</li>
+                            <li>Weekly blood tests</li>
+                            <li>Fetal monitoring (NST)</li>
+                            <li>Ultrasound for growth</li>
+                        </ul>
+                    </div>
+                    <div style="background:var(--surface);padding:1.5rem;border-radius:8px;border:2px solid var(--border);">
+                        <h4 style="color:var(--primary);margin-bottom:0.75rem;">With Severe Features</h4>
+                        <p><strong>At ≥34 weeks:</strong> Delivery after stabilization</p>
+                        <p><strong>Before 34 weeks:</strong> Hospitalization with:</p>
+                        <ul>
+                            <li>Frequent BP monitoring</li>
+                            <li>Antihypertensive medications</li>
+                            <li>Magnesium sulfate (seizure prevention)</li>
+                            <li>Corticosteroids (fetal lungs)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h4>Indications for Immediate Delivery:</h4>
+                    <ul>
+                        <li>Eclampsia (seizures)</li>
+                        <li>Uncontrolled severe hypertension</li>
+                        <li>HELLP syndrome</li>
+                        <li>Pulmonary edema</li>
+                        <li>Placental abruption</li>
+                        <li>Non-reassuring fetal status</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PREVENTION TAB -->
+        <div id="prevention" class="tab-content">
+            <div class="card">
+                <h2>Preventing Preeclampsia</h2>
+                
+                <h3>Low-Dose Aspirin (Recommended)</h3>
+                <div style="background:linear-gradient(135deg,#F3E5F5 0%,#E1BEE7 100%);border-left:4px solid #9C27B0;padding:1.5rem;border-radius:8px;margin:1.5rem 0;">
+                    <h4>✅ Who should take aspirin:</h4>
+                    <p>Women with high-risk factors (one or more) OR multiple moderate-risk factors</p>
+                    <p><strong>Dose:</strong> 81 mg daily (baby aspirin)</p>
+                    <p><strong>Timing:</strong> Start between 12-28 weeks (ideally before 16 weeks), continue until delivery</p>
+                    <p><strong>Effectiveness:</strong> Reduces risk by 10-15%, with greater reduction in severe preeclampsia (40-50%)</p>
+                </div>
+
+                <h3>Risk Factors</h3>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin:1.5rem 0;">
+                    <div style="background:var(--surface);padding:1.5rem;border-radius:8px;border:2px solid var(--border);">
+                        <h4 style="color:var(--primary);margin-bottom:0.75rem;">High-Risk (Take aspirin if ONE or more):</h4>
+                        <ul>
+                            <li>History of preeclampsia</li>
+                            <li>Multifetal gestation</li>
+                            <li>Chronic hypertension</li>
+                            <li>Diabetes</li>
+                            <li>Kidney disease</li>
+                            <li>Autoimmune disease</li>
+                        </ul>
+                    </div>
+                    <div style="background:var(--surface);padding:1.5rem;border-radius:8px;border:2px solid var(--border);">
+                        <h4 style="color:var(--primary);margin-bottom:0.75rem;">Moderate-Risk (Take aspirin if TWO or more):</h4>
+                        <ul>
+                            <li>First pregnancy</li>
+                            <li>Obesity (BMI >30)</li>
+                            <li>Family history</li>
+                            <li>Age ≥35 years</li>
+                            <li>African American race</li>
+                            <li>Low SES</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="danger-box">
+                    <h4>⚠️ Long-Term Cardiovascular Risk</h4>
+                    <p>Women who've had preeclampsia have approximately <strong>2x higher risk</strong> of:</p>
+                    <ul>
+                        <li>Chronic hypertension</li>
+                        <li>Heart disease</li>
+                        <li>Stroke</li>
+                        <li>Kidney disease</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>💚 Reducing Long-Term Risk</h4>
+                    <p>After preeclampsia, focus on:</p>
+                    <ul>
+                        <li>Regular check-ups and BP monitoring</li>
+                        <li>Healthy weight management</li>
+                        <li>Regular exercise (150 min/week)</li>
+                        <li>Healthy diet</li>
+                        <li>Don't smoke</li>
+                        <li>Always inform providers of history</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p><strong>Preeclampsia Education Tool</strong></p>
+            <p style="margin-top: 0.5rem;">Developed by Annie Rozenblyum and Christopher Zandieh</p>
+            <p>Under the supervision of Wendy L. Kinzler, MD, FACOG and Martin R. Chavez, MD, FACOG</p>
+            <p style="margin-top: 1rem;">Based on ACOG Practice Bulletin No. 222 - Gestational Hypertension and Preeclampsia</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">© 2025 | For emergency concerns, call 911 immediately</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">Last Updated: February 1, 2025 | Version 1.2.1</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab Navigation
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'tab_view', { tab_name: tabName, timestamp: new Date().toISOString() });
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Risk Assessment
+        document.getElementById('riskForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let highRiskCount = document.querySelectorAll('input[name="high"]:checked').length;
+            let moderateRiskCount = document.querySelectorAll('input[name="moderate"]:checked').length;
+            let selectedFactors = [];
+            document.querySelectorAll('input:checked').forEach(box => {
+                selectedFactors.push(box.getAttribute('data-factor'));
+            });
+
+            let riskLevel, riskClass, riskIcon, riskMessage, recommendations;
+
+            if (highRiskCount >= 1) {
+                riskLevel = 'High Risk';
+                riskClass = 'high';
+                riskIcon = '🔴';
+                riskMessage = 'You have one or more high-risk factors for preeclampsia.';
+                recommendations = `<h4>Recommended Actions:</h4><ul>
+                    <li><strong>Start low-dose aspirin (81 mg daily)</strong> between 12-28 weeks after discussing with your provider</li>
+                    <li>Attend all prenatal appointments</li>
+                    <li>Monitor blood pressure at home if recommended</li>
+                    <li>Learn warning signs and symptoms</li>
+                    <li>Contact provider immediately with concerning symptoms</li></ul>`;
+            } else if (moderateRiskCount >= 2) {
+                riskLevel = 'Moderate to High Risk';
+                riskClass = 'moderate';
+                riskIcon = '🟡';
+                riskMessage = 'You have multiple moderate-risk factors for preeclampsia.';
+                recommendations = `<h4>Recommended Actions:</h4><ul>
+                    <li><strong>Consider low-dose aspirin (81 mg daily)</strong> - discuss with your provider</li>
+                    <li>Ensure consistent prenatal care</li>
+                    <li>Be vigilant about warning signs</li>
+                    <li>Monitor BP as recommended</li>
+                    <li>Maintain healthy lifestyle</li></ul>`;
+            } else {
+                riskLevel = 'Lower Risk';
+                riskClass = 'low';
+                riskIcon = '🟢';
+                riskMessage = 'Based on selected factors, you appear to have lower baseline risk.';
+                recommendations = `<h4>Recommended Actions:</h4><ul>
+                    <li>Continue regular prenatal care</li>
+                    <li>Learn warning signs</li>
+                    <li>Monitor your health</li>
+                    <li>Report new symptoms promptly</li>
+                    <li>Remember: preeclampsia can occur without obvious risk factors</li></ul>
+                    <p><strong>Note:</strong> "Lower risk" does not mean "no risk."</p>`;
+            }
+
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'risk_assessment_completed', {
+                    risk_level: riskLevel,
+                    high_risk_count: highRiskCount,
+                    moderate_risk_count: moderateRiskCount,
+                    selected_factors: selectedFactors.join(', '),
+                    timestamp: new Date().toISOString()
+                });
+            }
+
+            const bgColor = riskClass === 'high' ? 'linear-gradient(135deg,#FFEBEE 0%,#FFCDD2 100%)' :
+                             riskClass === 'moderate' ? 'linear-gradient(135deg,#FFF3E0 0%,#FFE0B2 100%)' :
+                             'linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%)';
+            const borderColor = riskClass === 'high' ? '#E63946' :
+                                riskClass === 'moderate' ? '#F4A261' : '#52B788';
+
+            document.getElementById('riskResult').innerHTML = `
+                <div style="margin-top:2rem;padding:2rem;border-radius:12px;border:3px solid ${borderColor};background:${bgColor};animation:slideIn 0.5s ease;">
+                    <h3 style="margin-top:0;display:flex;align-items:center;gap:0.75rem;font-size:1.5rem;"><span style="font-size:2rem;">${riskIcon}</span> ${riskLevel}</h3>
+                    <p><strong>${riskMessage}</strong></p>
+                    ${recommendations}
+                    <div style="margin-top:1.5rem;padding:1rem;background:rgba(255,255,255,0.5);border-radius:6px;">
+                        <p><strong>Your Risk Profile:</strong></p>
+                        <p>High-risk factors: ${highRiskCount}</p>
+                        <p>Moderate-risk factors: ${moderateRiskCount}</p>
+                    </div>
+                    <div style="margin-top:1rem;font-size:0.9rem;font-style:italic;">
+                        <p>⚠️ This assessment is for educational purposes only. Discuss your risk factors with your healthcare provider.</p>
+                    </div>
+                </div>`;
+            document.getElementById('riskResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+
+        // Q&A System
+        let conversationHistory = [];
+
+        function askQuestion(question) {
+            document.getElementById('chatInput').value = question;
+            sendMessage();
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'question_asked', {
+                    question_preview: message.substring(0, 50),
+                    timestamp: new Date().toISOString()
+                });
+            }
+
+            addMessage('user', message);
+            input.value = '';
+
+            const sendButton = document.getElementById('sendButton');
+            input.disabled = true;
+            sendButton.disabled = true;
+            document.getElementById('typingIndicator').classList.add('active');
+
+            try {
+                // Call Netlify serverless function instead of Anthropic API directly
+                const response = await fetch('/.netlify/functions/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        history: conversationHistory
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.content && data.content[0] && data.content[0].text) {
+                    const assistantMessage = data.content[0].text;
+                    conversationHistory.push(
+                        { role: 'user', content: message },
+                        { role: 'assistant', content: assistantMessage }
+                    );
+                    addMessage('assistant', assistantMessage);
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'question_answered', { timestamp: new Date().toISOString() });
+                    }
+                } else if (data.error) {
+                    addMessage('assistant', `I apologize, but I encountered an error: ${data.error.message}. Please try again or consult the educational content in the other tabs.`);
+                } else {
+                    throw new Error('Unexpected response format');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addMessage('assistant', 'I apologize, but I\'m having trouble connecting right now. Please explore the educational content in the other tabs of this tool. For any medical questions or concerns, please contact your obstetrical care provider. For emergency symptoms, call 911 immediately.');
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'qa_error', { error_message: error.message, timestamp: new Date().toISOString() });
+                }
+            } finally {
+                input.disabled = false;
+                sendButton.disabled = false;
+                document.getElementById('typingIndicator').classList.remove('active');
+                input.focus();
+            }
+        }
+
+        function addMessage(role, content) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${role}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = role === 'user' ? '👤' : '🩺';
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            
+            let formattedContent = content
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>');
+            
+            contentDiv.innerHTML = '<p>' + formattedContent + '</p>';
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(contentDiv);
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        window.addEventListener('load', () => {
+            document.getElementById('chatInput').focus();
+        });
+
+        // BMI Calculator Functions
+        function toggleUnits() {
+            const unitSystem = document.querySelector('input[name="unitSystem"]:checked').value;
+            const imperialInputs = document.getElementById('imperialInputs');
+            const metricInputs = document.getElementById('metricInputs');
+            
+            if (unitSystem === 'imperial') {
+                imperialInputs.style.display = 'grid';
+                metricInputs.style.display = 'none';
+            } else {
+                imperialInputs.style.display = 'none';
+                metricInputs.style.display = 'grid';
+            }
+        }
+
+        document.getElementById('bmiForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const unitSystem = document.querySelector('input[name="unitSystem"]:checked').value;
+            let bmi, weight, height;
+            
+            if (unitSystem === 'imperial') {
+                const weightLbs = parseFloat(document.getElementById('weightLbs').value);
+                const heightFt = parseFloat(document.getElementById('heightFt').value) || 0;
+                const heightIn = parseFloat(document.getElementById('heightIn').value) || 0;
+                const totalInches = (heightFt * 12) + heightIn;
+                
+                if (!weightLbs || !totalInches || totalInches === 0) {
+                    alert('Please enter valid weight and height values.');
+                    return;
+                }
+                
+                // BMI = (weight in pounds / (height in inches)²) × 703
+                bmi = (weightLbs / (totalInches * totalInches)) * 703;
+                weight = weightLbs + ' lbs';
+                height = heightFt + "'" + heightIn + '"';
+            } else {
+                const weightKg = parseFloat(document.getElementById('weightKg').value);
+                const heightCm = parseFloat(document.getElementById('heightCm').value);
+                
+                if (!weightKg || !heightCm) {
+                    alert('Please enter valid weight and height values.');
+                    return;
+                }
+                
+                // BMI = weight in kg / (height in meters)²
+                const heightM = heightCm / 100;
+                bmi = weightKg / (heightM * heightM);
+                weight = weightKg + ' kg';
+                height = heightCm + ' cm';
+            }
+            
+            displayBMIResult(bmi, weight, height);
+            
+            // Track BMI calculation
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'bmi_calculated', {
+                    bmi_value: Math.round(bmi * 10) / 10,
+                    bmi_category: getBMICategory(bmi),
+                    timestamp: new Date().toISOString()
+                });
+            }
+        });
+
+        function getBMICategory(bmi) {
+            if (bmi < 18.5) return 'Underweight';
+            if (bmi < 25) return 'Normal weight';
+            if (bmi < 30) return 'Overweight';
+            return 'Obese';
+        }
+
+        function displayBMIResult(bmi, weight, height) {
+            const resultDiv = document.getElementById('bmiResult');
+            const bmiRounded = Math.round(bmi * 10) / 10;
+            
+            let category, color, bgColor, borderColor, message, riskMessage;
+            
+            if (bmi < 18.5) {
+                category = 'Underweight';
+                color = '#1976D2';
+                bgColor = 'linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%)';
+                borderColor = '#1976D2';
+                message = 'Your BMI is below the normal range.';
+                riskMessage = '<p><strong>Preeclampsia Risk:</strong> Not considered a risk factor. However, maintaining a healthy weight is important for overall pregnancy health.</p>';
+            } else if (bmi < 25) {
+                category = 'Normal Weight';
+                color = '#388E3C';
+                bgColor = 'linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%)';
+                borderColor = '#52B788';
+                message = 'Your BMI is in the healthy range.';
+                riskMessage = '<p><strong>Preeclampsia Risk:</strong> Normal weight is not a risk factor for preeclampsia.</p>';
+            } else if (bmi < 30) {
+                category = 'Overweight';
+                color = '#F57C00';
+                bgColor = 'linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%)';
+                borderColor = '#F4A261';
+                message = 'Your BMI is above the healthy range.';
+                riskMessage = '<p><strong>Preeclampsia Risk:</strong> Being overweight may slightly increase risk. Focus on healthy eating and regular exercise. Consult your healthcare provider.</p>';
+            } else {
+                category = 'Obese';
+                color = '#D32F2F';
+                bgColor = 'linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%)';
+                borderColor = '#E63946';
+                message = 'Your BMI is in the obese range.';
+                riskMessage = '<p><strong>⚠️ Preeclampsia Risk:</strong> Obesity (BMI > 30) is a <strong>moderate risk factor</strong> for preeclampsia.</p><p><strong>If you have 2 or more moderate risk factors,</strong> you should discuss low-dose aspirin (81mg daily starting at 12-28 weeks) with your healthcare provider.</p><p><strong>Other moderate risk factors include:</strong> First pregnancy, age 35+, family history of preeclampsia, African American race.</p>';
+            }
+            
+            resultDiv.innerHTML = `
+                <div style="padding: 2rem; border-radius: 12px; border: 3px solid ${borderColor}; background: ${bgColor}; animation: slideIn 0.5s ease;">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <h3 style="color: ${color}; font-size: 2rem; margin-bottom: 0.5rem;">Your BMI: ${bmiRounded}</h3>
+                        <p style="font-size: 1.2rem; font-weight: 600; color: ${color};">${category}</p>
+                        <p style="margin-top: 0.5rem; color: var(--text-light);">Weight: ${weight} | Height: ${height}</p>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.6); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <p style="font-size: 1rem; margin-bottom: 1rem;"><strong>${message}</strong></p>
+                        ${riskMessage}
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.6); padding: 1rem; border-radius: 8px; font-size: 0.9rem;">
+                        <p><strong>BMI Reference Ranges:</strong></p>
+                        <ul style="margin: 0.5rem 0 0 1.5rem;">
+                            <li>Underweight: Less than 18.5</li>
+                            <li>Normal weight: 18.5 - 24.9</li>
+                            <li>Overweight: 25 - 29.9</li>
+                            <li>Obese: 30 or greater</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(255,255,255,0.6); border-radius: 8px; font-size: 0.85rem; font-style: italic;">
+                        <p>💡 <strong>Tip:</strong> If you're concerned about your BMI or preeclampsia risk, use the Risk Assessment tab to evaluate all your risk factors, and discuss prevention strategies with your healthcare provider.</p>
+                    </div>
+                </div>
+            `;
+            
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
