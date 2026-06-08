@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preeclampsia Clinical Reference | OB/GYN Residency</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0D1B2A;
+  --navy-mid: #162639;
+  --navy-light: #1E3A52;
+  --blue: #1E5FA8;
+  --blue-bright: #2E7DD4;
+  --white: #F7F9FC;
+  --gray-100: #EEF1F5;
+  --gray-200: #D8DDE5;
+  --gray-400: #8A97A8;
+  --gray-600: #4E5D6E;
+  --crimson: #C0392B;
+  --crimson-bg: #FDF0EE;
+  --amber: #D4860A;
+  --amber-bg: #FEF6E7;
+  --teal: #1A7A6E;
+  --teal-bg: #EAF5F3;
+  --purple: #6B4FAB;
+  --purple-bg: #F3F0FA;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'Inter', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--navy);
+  color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+.site-header {
+  background: var(--navy);
+  border-bottom: 1px solid var(--navy-light);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.header-left { display: flex; align-items: center; gap: 1rem; }
+.logo-badge {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  background: var(--blue);
+  color: white;
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+.header-title {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--gray-400);
+  letter-spacing: 0.02em;
+}
+.header-title strong { color: var(--white); }
+.acog-ref {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--gray-400);
+  border: 1px solid var(--navy-light);
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+}
+
+/* EMERGENCY BAR */
+.emergency-bar {
+  background: var(--crimson);
+  color: white;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* LAYOUT */
+.app-layout {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* QUICK REF SIDEBAR */
+.quick-ref {
+  width: 260px;
+  min-width: 260px;
+  background: var(--navy-mid);
+  border-right: 1px solid var(--navy-light);
+  overflow-y: auto;
+  padding: 1.25rem 0;
+  position: sticky;
+  top: 60px;
+  height: calc(100vh - 60px);
+}
+.qr-section { margin-bottom: 1.5rem; padding: 0 1.25rem; }
+.qr-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--navy-light);
+}
+.qr-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.qr-row:last-child { border-bottom: none; }
+.qr-key {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  flex: 1;
+}
+.qr-val {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--white);
+  text-align: right;
+}
+.qr-val.red { color: #FF6B6B; }
+.qr-val.amber { color: #FFB347; }
+.qr-val.teal { color: #4ECDC4; }
+
+.qr-drug {
+  background: var(--navy-light);
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.qr-drug-name {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--blue-bright);
+  margin-bottom: 0.35rem;
+}
+.qr-drug-dose {
+  font-size: 0.75rem;
+  color: var(--gray-200);
+  line-height: 1.5;
+}
+
+/* MAIN CONTENT */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--gray-100);
+  color: var(--navy);
+}
+
+/* TAB NAV */
+.tab-nav {
+  background: var(--navy-mid);
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--navy-light);
+  padding: 0 1.5rem;
+}
+.tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 0.9rem 1.25rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+}
+.tab-btn:hover { color: var(--white); }
+.tab-btn.active { color: var(--white); border-bottom-color: var(--blue-bright); }
+
+/* TAB PANELS */
+.tab-panel { display: none; padding: 2rem; }
+.tab-panel.active { display: block; }
+
+/* SECTION HEADER */
+.section-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+.section-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--blue);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+.section-head h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.25rem;
+}
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+/* CARDS */
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--gray-200);
+  box-shadow: 0 1px 4px rgba(13,27,42,0.06);
+}
+.card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.card h3 .tag {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+}
+.tag-acog { background: var(--blue); color: white; }
+.tag-grade-a { background: var(--teal); color: white; }
+.tag-grade-b { background: var(--amber); color: white; }
+.tag-grade-c { background: var(--gray-400); color: white; }
+
+/* ALGORITHM BOXES */
+.algo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.25rem; }
+.algo-box {
+  border-radius: 8px;
+  padding: 1.25rem;
+  border-left: 4px solid;
+}
+.algo-box.decision { background: var(--teal-bg); border-color: var(--teal); }
+.algo-box.warning  { background: var(--amber-bg); border-color: var(--amber); }
+.algo-box.danger   { background: var(--crimson-bg); border-color: var(--crimson); }
+.algo-box.info     { background: #EEF4FF; border-color: var(--blue); }
+.algo-box.purple   { background: var(--purple-bg); border-color: var(--purple); }
+.algo-box-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  opacity: 0.7;
+}
+.algo-box h4 { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+.algo-box ul { list-style: none; padding: 0; }
+.algo-box li {
+  font-size: 0.85rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  color: var(--gray-600);
+  padding-left: 1rem;
+  position: relative;
+}
+.algo-box li:last-child { border-bottom: none; }
+.algo-box li::before { content: '→'; position: absolute; left: 0; color: inherit; opacity: 0.5; }
+.algo-box p { font-size: 0.85rem; color: var(--gray-600); line-height: 1.6; }
+
+/* DATA TABLE */
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+.data-table th {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-600);
+  background: var(--gray-100);
+  padding: 0.65rem 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--gray-200);
+}
+.data-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--gray-100);
+  color: var(--navy);
+  vertical-align: top;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--gray-100); }
+.mono-val {
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.pill {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+.pill-red { background: var(--crimson-bg); color: var(--crimson); border: 1px solid var(--crimson); }
+.pill-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber); }
+.pill-teal { background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal); }
+.pill-blue { background: #EEF4FF; color: var(--blue); border: 1px solid var(--blue); }
+
+/* FLOW CHART */
+.flowchart { display: flex; flex-direction: column; gap: 0; }
+.flow-node {
+  background: var(--navy);
+  color: white;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  position: relative;
+  margin-bottom: 0;
+  box-shadow: 0 2px 8px rgba(13,27,42,0.15);
+}
+.flow-node.blue-node { background: var(--blue); }
+.flow-node.teal-node { background: var(--teal); }
+.flow-node.amber-node { background: var(--amber); }
+.flow-node.red-node { background: var(--crimson); }
+.flow-arrow {
+  text-align: center;
+  padding: 0.4rem 0;
+  color: var(--gray-400);
+  font-size: 1.1rem;
+}
+.flow-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.4rem 0; }
+.flow-note { font-family: var(--mono); font-size: 0.7rem; font-weight: 400; opacity: 0.85; margin-top: 0.25rem; }
+.flow-condition {
+  background: white;
+  border: 2px solid var(--navy);
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--navy);
+  text-align: center;
+}
+
+/* CASE VIGNETTES */
+.case-card {
+  background: white;
+  border-radius: 10px;
+  border: 1px solid var(--gray-200);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.case-header {
+  background: var(--navy);
+  color: white;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.case-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.25rem; }
+.case-meta { font-family: var(--mono); font-size: 0.7rem; color: var(--gray-400); }
+.case-body { padding: 1.5rem; }
+.case-body p { font-size: 0.9rem; color: var(--gray-600); line-height: 1.7; margin-bottom: 1rem; }
+.case-body p:last-child { margin-bottom: 0; }
+.case-vitals {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+  background: var(--gray-100);
+  border-radius: 8px;
+  padding: 1rem;
+}
+.vital-box { text-align: center; }
+.vital-label { font-family: var(--mono); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-400); margin-bottom: 0.2rem; }
+.vital-value { font-family: var(--mono); font-size: 1rem; font-weight: 700; color: var(--navy); }
+.vital-value.abnormal { color: var(--crimson); }
+.case-question {
+  background: var(--navy-mid);
+  color: white;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.case-question::before { content: '? '; font-family: var(--mono); color: var(--blue-bright); }
+.reveal-btn {
+  background: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.25rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.reveal-btn:hover { background: var(--blue-bright); }
+.case-answer {
+  display: none;
+  background: var(--teal-bg);
+  border-left: 4px solid var(--teal);
+  border-radius: 0 8px 8px 0;
+  padding: 1.25rem;
+  margin-top: 1rem;
+  font-size: 0.87rem;
+  line-height: 1.7;
+  color: var(--navy);
+}
+.case-answer.open { display: block; }
+.case-answer strong { color: var(--teal); font-weight: 700; }
+.answer-key-point {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+  align-items: flex-start;
+}
+.answer-key-point::before { content: '✓'; color: var(--teal); font-weight: 700; flex-shrink: 0; margin-top: 0.05rem; }
+
+/* GUIDELINES DEEP DIVE */
+.guideline-section { margin-bottom: 2rem; }
+.guideline-section h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--gray-200);
+}
+.evidence-row {
+  display: flex;
+  gap: 1rem;
+  padding: 0.9rem;
+  border-radius: 8px;
+  border: 1px solid var(--gray-200);
+  margin-bottom: 0.75rem;
+  background: white;
+  align-items: flex-start;
+}
+.evidence-grade {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  width: 52px;
+  min-width: 52px;
+  text-align: center;
+  padding: 0.3rem 0;
+  border-radius: 5px;
+  line-height: 1;
+}
+.evidence-text { font-size: 0.87rem; color: var(--gray-600); line-height: 1.6; flex: 1; }
+.evidence-text strong { color: var(--navy); }
+
+/* DRUG DOSING */
+.drug-section { margin-bottom: 2rem; }
+.drug-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--navy);
+  color: white;
+  border-radius: 8px 8px 0 0;
+  padding: 1rem 1.25rem;
+}
+.drug-name { font-family: var(--mono); font-weight: 700; font-size: 1rem; }
+.drug-class { font-family: var(--mono); font-size: 0.68rem; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.08em; }
+.drug-body {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+}
+.drug-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  border-bottom: 1px solid var(--gray-100);
+}
+.drug-row:last-child { border-bottom: none; }
+.drug-row-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  background: var(--gray-100);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: flex-start;
+}
+.drug-row-val {
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: var(--navy);
+  line-height: 1.6;
+}
+.drug-row-val.mono-text { font-family: var(--mono); font-size: 0.82rem; }
+.warning-note {
+  background: var(--amber-bg);
+  border: 1px solid var(--amber);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  color: var(--navy);
+  margin: 0.75rem 1rem;
+}
+.warning-note::before { content: '⚠ '; font-weight: 700; color: var(--amber); }
+.danger-note {
+  background: var(--crimson-bg);
+  border: 1px solid var(--crimson);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  color: var(--navy);
+  margin: 0.75rem 1rem;
+}
+.danger-note::before { content: '⛔ '; font-weight: 700; }
+
+/* AI CONSULT */
+.consult-container {
+  background: white;
+  border-radius: 10px;
+  border: 1px solid var(--gray-200);
+  overflow: hidden;
+}
+.consult-header {
+  background: var(--navy);
+  color: white;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.consult-title { font-weight: 700; font-size: 0.95rem; }
+.consult-subtitle { font-family: var(--mono); font-size: 0.68rem; color: var(--gray-400); margin-top: 0.15rem; }
+.consult-badge { background: var(--blue); color: white; font-family: var(--mono); font-size: 0.65rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.06em; }
+.chat-messages {
+  height: 420px;
+  overflow-y: auto;
+  padding: 1.5rem;
+  background: var(--gray-100);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.msg { display: flex; gap: 0.75rem; animation: fadeUp 0.3s ease; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.msg-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  letter-spacing: 0;
+}
+.msg.user .msg-avatar { background: var(--blue); color: white; }
+.msg.ai .msg-avatar { background: var(--navy); color: white; }
+.msg-bubble {
+  border-radius: 8px;
+  padding: 0.9rem 1.1rem;
+  max-width: 85%;
+  font-size: 0.87rem;
+  line-height: 1.65;
+}
+.msg.user .msg-bubble { background: var(--blue); color: white; }
+.msg.ai .msg-bubble { background: white; border: 1px solid var(--gray-200); color: var(--navy); }
+.msg.ai .msg-bubble strong { color: var(--blue); }
+.typing-dots { display: none; align-items: center; gap: 0.5rem; padding: 0.75rem 1.1rem; }
+.typing-dots.active { display: flex; }
+.dot { width: 7px; height: 7px; background: var(--blue); border-radius: 50%; animation: bounce 1.2s infinite; }
+.dot:nth-child(2) { animation-delay: 0.15s; }
+.dot:nth-child(3) { animation-delay: 0.3s; }
+@keyframes bounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+.chat-input-bar {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--gray-200);
+  background: white;
+  display: flex;
+  gap: 0.75rem;
+}
+.chat-input {
+  flex: 1;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  color: var(--navy);
+  transition: border-color 0.2s;
+}
+.chat-input:focus { outline: none; border-color: var(--blue); }
+.chat-send {
+  background: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1.25rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.chat-send:hover:not(:disabled) { background: var(--blue-bright); }
+.chat-send:disabled { opacity: 0.5; cursor: not-allowed; }
+.suggested-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--gray-100); border-top: 1px solid var(--gray-200); }
+.chip {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+  color: var(--blue);
+  transition: background 0.15s, border-color 0.15s;
+}
+.chip:hover { background: var(--blue); color: white; border-color: var(--blue); }
+
+/* RISK STRATIFICATION */
+.risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+.risk-group { background: white; border-radius: 10px; border: 1px solid var(--gray-200); overflow: hidden; }
+.risk-group-header { padding: 1rem 1.25rem; font-weight: 700; font-size: 0.9rem; color: white; display: flex; align-items: center; gap: 0.5rem; }
+.risk-group-header.high-risk { background: var(--crimson); }
+.risk-group-header.mod-risk { background: var(--amber); }
+.risk-factor-list { list-style: none; padding: 0.75rem 0; }
+.risk-factor-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.55rem 1.25rem; border-bottom: 1px solid var(--gray-100); font-size: 0.85rem; color: var(--navy); }
+.risk-factor-item:last-child { border-bottom: none; }
+.risk-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.risk-dot.high { background: var(--crimson); }
+.risk-dot.mod { background: var(--amber); }
+.aspirin-box {
+  background: var(--navy);
+  color: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+}
+.aspirin-stat-label { font-family: var(--mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-400); margin-bottom: 0.25rem; }
+.aspirin-stat-value { font-family: var(--mono); font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 0.25rem; }
+.aspirin-stat-note { font-size: 0.78rem; color: var(--gray-400); }
+
+/* DISCLAIMER */
+.footer-disclaimer {
+  background: var(--navy-mid);
+  border-top: 1px solid var(--navy-light);
+  padding: 0.75rem 2rem;
+  font-family: var(--mono);
+  font-size: 0.67rem;
+  color: var(--gray-400);
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .quick-ref { display: none; }
+  .risk-grid { grid-template-columns: 1fr; }
+  .aspirin-box { grid-template-columns: 1fr; }
+  .flow-split { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .tab-panel { padding: 1rem; }
+  .case-vitals { grid-template-columns: repeat(2, 1fr); }
+  .drug-row { grid-template-columns: 1fr; }
+  .drug-row-label { border-bottom: 1px solid var(--gray-100); }
+}
+</style>
+</head>
+<body>
+
+<div class="emergency-bar">
+  ⚡ Severe HTN ≥160/110 → Antihypertensive within 30–60 min → Mg₂SO₄ if delivering or severe features → Urgent MFM/attending consult
+</div>
+
+<header class="site-header">
+  <div class="header-left">
+    <span class="logo-badge">OB/GYN Res.</span>
+    <span class="header-title"><strong>Preeclampsia</strong> Clinical Reference</span>
+  </div>
+  <span class="acog-ref">ACOG PB-222 · Updated Feb 2025</span>
+</header>
+
+<div class="app-layout">
+
+  <!-- QUICK REFERENCE SIDEBAR -->
+  <aside class="quick-ref">
+    <div class="qr-section">
+      <div class="qr-label">BP Thresholds</div>
+      <div class="qr-row"><span class="qr-key">Dx cutoff</span><span class="qr-val amber">≥140/90</span></div>
+      <div class="qr-row"><span class="qr-key">Severe cutoff</span><span class="qr-val red">≥160/110</span></div>
+      <div class="qr-row"><span class="qr-key">Repeat interval</span><span class="qr-val">4 hrs</span></div>
+      <div class="qr-row"><span class="qr-key">Tx target</span><span class="qr-val teal">&lt;160/110</span></div>
+    </div>
+
+    <div class="qr-section">
+      <div class="qr-label">Delivery Timing</div>
+      <div class="qr-row"><span class="qr-key">No severe features</span><span class="qr-val">37+0 wk</span></div>
+      <div class="qr-row"><span class="qr-key">Severe features</span><span class="qr-val amber">34+0 wk</span></div>
+      <div class="qr-row"><span class="qr-key">HELLP syndrome</span><span class="qr-val red">34+0 wk</span></div>
+      <div class="qr-row"><span class="qr-key">Eclampsia</span><span class="qr-val red">Immediate</span></div>
+      <div class="qr-row"><span class="qr-key">Pulm edema</span><span class="qr-val red">Immediate</span></div>
+    </div>
+
+    <div class="qr-section">
+      <div class="qr-label">Lab Criteria</div>
+      <div class="qr-row"><span class="qr-key">Proteinuria</span><span class="qr-val">≥300 mg/24h</span></div>
+      <div class="qr-row"><span class="qr-key">Pr:Cr ratio</span><span class="qr-val">≥0.3</span></div>
+      <div class="qr-row"><span class="qr-key">Platelets (sev)</span><span class="qr-val red">&lt;100k</span></div>
+      <div class="qr-row"><span class="qr-key">Creatinine</span><span class="qr-val">&gt;1.1 mg/dL</span></div>
+      <div class="qr-row"><span class="qr-key">LFTs (sev)</span><span class="qr-val red">2× ULN</span></div>
+    </div>
+
+    <div class="qr-section">
+      <div class="qr-label">First-Line Drugs</div>
+      <div class="qr-drug">
+        <div class="qr-drug-name">Labetalol IV</div>
+        <div class="qr-drug-dose">20 mg IV → repeat 40 mg → 80 mg q10–20 min<br>Max 300 mg total</div>
+      </div>
+      <div class="qr-drug">
+        <div class="qr-drug-name">Hydralazine IV</div>
+        <div class="qr-drug-dose">5–10 mg IV q20 min<br>Max 20 mg total</div>
+      </div>
+      <div class="qr-drug">
+        <div class="qr-drug-name">Nifedipine PO</div>
+        <div class="qr-drug-dose">10–20 mg IR PO q20 min<br>Max 50 mg acute</div>
+      </div>
+      <div class="qr-drug">
+        <div class="qr-drug-name">Mg₂SO₄</div>
+        <div class="qr-drug-dose">4–6 g IV load over 15–20 min<br>Then 1–2 g/hr maintenance</div>
+      </div>
+    </div>
+
+    <div class="qr-section">
+      <div class="qr-label">Mg Toxicity Watch</div>
+      <div class="qr-row"><span class="qr-key">Therapeutic</span><span class="qr-val teal">4–7 mEq/L</span></div>
+      <div class="qr-row"><span class="qr-key">DTR loss</span><span class="qr-val amber">7–10</span></div>
+      <div class="qr-row"><span class="qr-key">Resp. depression</span><span class="qr-val red">>10</span></div>
+      <div class="qr-row"><span class="qr-key">Cardiac arrest</span><span class="qr-val red">&gt;15</span></div>
+      <div class="qr-row"><span class="qr-key">Antidote</span><span class="qr-val teal">Ca gluconate 1g IV</span></div>
+    </div>
+
+    <div class="qr-section">
+      <div class="qr-label">Aspirin Prophylaxis</div>
+      <div class="qr-row"><span class="qr-key">Dose</span><span class="qr-val">81 mg/day</span></div>
+      <div class="qr-row"><span class="qr-key">Start</span><span class="qr-val">12–28 wk</span></div>
+      <div class="qr-row"><span class="qr-key">Ideal start</span><span class="qr-val teal">&lt;16 wk</span></div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <nav class="tab-nav">
+      <button class="tab-btn active" onclick="showTab('algorithms', this)">Clinical Algorithms</button>
+      <button class="tab-btn" onclick="showTab('cases', this)">Case Vignettes</button>
+      <button class="tab-btn" onclick="showTab('guidelines', this)">ACOG Guidelines</button>
+      <button class="tab-btn" onclick="showTab('dosing', this)">Drug Dosing</button>
+      <button class="tab-btn" onclick="showTab('consult', this)">AI Consult</button>
+      <button class="tab-btn" onclick="showTab('risk', this)">Risk Stratification</button>
+    </nav>
+
+    <!-- ===== ALGORITHMS TAB ===== -->
+    <div id="algorithms" class="tab-panel active">
+      <div class="section-head">
+        <div class="section-icon">⚙️</div>
+        <div>
+          <div class="section-eyebrow">Decision Support</div>
+          <h2>Clinical Management Algorithms</h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Initial Diagnosis: Is This Preeclampsia?</h3>
+        <div class="flowchart">
+          <div class="flow-node blue-node">BP ≥140/90 on 2 readings ≥4 hrs apart, after 20 weeks gestation</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-condition">Check for severe features AND laboratory work</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-split">
+            <div>
+              <div class="flow-node amber-node">Without Severe Features<div class="flow-note">BP 140–159/90–109 · No symptoms · Labs WNL</div></div>
+            </div>
+            <div>
+              <div class="flow-node red-node">With Severe Features<div class="flow-note">BP ≥160/110 OR severe symptoms OR abnormal labs</div></div>
+            </div>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-split">
+            <div>
+              <div class="flow-node teal-node">Outpatient monitoring if &lt;37 wk<div class="flow-note">Weekly labs · BPP/NST · Deliver at 37+0 wk</div></div>
+            </div>
+            <div>
+              <div class="flow-node red-node">Hospitalize · Mg₂SO₄ · Antihypertensives<div class="flow-note">Deliver ≥34 wk · Steroids if 34–36+6 wk</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="algo-grid">
+        <div class="algo-box danger">
+          <div class="algo-box-label">Severe Features — Any One Qualifies</div>
+          <h4>Criteria for Severe Features</h4>
+          <ul>
+            <li>BP ≥160/110 on 2 readings ≥4 hrs apart</li>
+            <li>Thrombocytopenia: platelets &lt;100,000/μL</li>
+            <li>Renal insufficiency: Cr &gt;1.1 mg/dL or doubling</li>
+            <li>Liver: AST/ALT ≥2× ULN ± RUQ/epigastric pain</li>
+            <li>Pulmonary edema</li>
+            <li>New-onset headache unresponsive to medication</li>
+            <li>Visual disturbances</li>
+          </ul>
+        </div>
+        <div class="algo-box warning">
+          <div class="algo-box-label">HELLP Syndrome</div>
+          <h4>Tennessee Classification</h4>
+          <ul>
+            <li>Hemolysis: LDH &gt;600 U/L, abnormal smear, bilirubin &gt;1.2</li>
+            <li>Elevated Liver enzymes: AST &gt;70 U/L</li>
+            <li>Low Platelets: &lt;100,000/μL</li>
+            <li>Partial HELLP if 1–2 criteria met</li>
+            <li>Deliver at ≥34 weeks regardless of severity</li>
+          </ul>
+        </div>
+        <div class="algo-box info">
+          <div class="algo-box-label">Eclampsia Response</div>
+          <h4>Seizure Management</h4>
+          <ul>
+            <li>Protect airway · Left lateral decubitus</li>
+            <li>Mg₂SO₄ 4–6 g IV over 15–20 min (if not already on)</li>
+            <li>Rebolus 2 g if seizing on Mg</li>
+            <li>Lorazepam/diazepam if Mg fails</li>
+            <li>Stabilize → delivery plan (not emergent cesarean unless obstetric indication)</li>
+            <li>Continue Mg 24 hrs postpartum</li>
+          </ul>
+        </div>
+        <div class="algo-box decision">
+          <div class="algo-box-label">Postpartum Surveillance</div>
+          <h4>Post-Delivery Monitoring</h4>
+          <ul>
+            <li>BP check at 72 hrs and 7–10 days postpartum</li>
+            <li>Continue Mg 24 hrs after delivery</li>
+            <li>HTN can worsen postpartum (days 3–7)</li>
+            <li>Treat if BP ≥150/100 postpartum</li>
+            <li>NSAID caution if hypertensive</li>
+            <li>Counsel on lifelong CV risk</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Antihypertensive Selection Algorithm <span class="tag tag-acog">ACOG PB-222</span></h3>
+        <div class="flowchart">
+          <div class="flow-node red-node">Acute Severe Hypertension: BP ≥160/110 confirmed</div>
+          <div class="flow-arrow">↓ Treat within 30–60 minutes</div>
+          <div class="flow-split">
+            <div>
+              <div class="flow-node blue-node">Labetalol IV 20 mg<div class="flow-note">Preferred if no asthma/bradycardia · Repeat q10–20 min, escalate dose</div></div>
+            </div>
+            <div>
+              <div class="flow-node blue-node">Nifedipine IR 10–20 mg PO<div class="flow-note">Preferred for oral route · q20–30 min · Watch Mg interaction</div></div>
+            </div>
+          </div>
+          <div class="flow-arrow">↓ If BP still ≥160/110 after max doses</div>
+          <div class="flow-node amber-node">Hydralazine IV 5–10 mg q20 min OR escalate to alternate agent · Contact attending</div>
+          <div class="flow-arrow">↓ Goal achieved: BP &lt;160/110</div>
+          <div class="flow-node teal-node">Transition to maintenance oral therapy · Labetalol, nifedipine ER, or methyldopa</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CASES TAB ===== -->
+    <div id="cases" class="tab-panel">
+      <div class="section-head">
+        <div class="section-icon">📋</div>
+        <div>
+          <div class="section-eyebrow">Clinical Reasoning</div>
+          <h2>Case Vignettes</h2>
+        </div>
+      </div>
+
+      <!-- Case 1 -->
+      <div class="case-card">
+        <div class="case-header">
+          <div>
+            <div class="case-title">Case 1: The "Routine" Elevated BP</div>
+            <div class="case-meta">G1P0 · 36+2 weeks · Prenatal visit</div>
+          </div>
+          <span class="pill pill-amber">Moderate Complexity</span>
+        </div>
+        <div class="case-body">
+          <p>A 28-year-old G1P0 presents to her routine prenatal visit at 36+2 weeks. She has no complaints. Her prenatal course has been uncomplicated. On intake, BP is 148/96 mmHg. The nurse repeats it 20 minutes later: 152/98 mmHg.</p>
+          <div class="case-vitals">
+            <div class="vital-box"><div class="vital-label">BP (×2)</div><div class="vital-value abnormal">152/98</div></div>
+            <div class="vital-box"><div class="vital-label">HR</div><div class="vital-value">84</div></div>
+            <div class="vital-box"><div class="vital-label">SpO₂</div><div class="vital-value">99%</div></div>
+            <div class="vital-box"><div class="vital-label">Urine dip</div><div class="vital-value abnormal">2+ protein</div></div>
+            <div class="vital-box"><div class="vital-label">Headache</div><div class="vital-value">Denies</div></div>
+            <div class="vital-box"><div class="vital-label">Vision Δ</div><div class="vital-value">Denies</div></div>
+          </div>
+          <div class="case-question">What is your diagnosis, and what is the next step in management?</div>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">Reveal Answer</button>
+          <div class="case-answer">
+            <div class="answer-key-point"><strong>Diagnosis:</strong> Preeclampsia without severe features — BP ≥140/90 on two readings ≥4 hrs apart with proteinuria at ≥20 weeks.</div>
+            <div class="answer-key-point"><strong>Next steps:</strong> Admit for observation. Send CBC, CMP, LFTs, uric acid, 24-hour urine protein (or repeat urine Pr:Cr). Continuous fetal monitoring.</div>
+            <div class="answer-key-point"><strong>Delivery timing:</strong> At 36+2 weeks with preeclampsia without severe features, ACOG recommends delivery at ≥37+0 weeks. If labs are reassuring and BP remains below severe range, expectant management for ~5 more days is appropriate.</div>
+            <div class="answer-key-point"><strong>Key teaching point:</strong> No symptoms does not exclude preeclampsia. Proteinuria on dipstick requires quantification. Do NOT send home without evaluation — this presentation requires hospital-level workup.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 2 -->
+      <div class="case-card">
+        <div class="case-header">
+          <div>
+            <div class="case-title">Case 2: Severe Range BP in Triage</div>
+            <div class="case-meta">G2P1 · 31+5 weeks · ED triage</div>
+          </div>
+          <span class="pill pill-red">High Complexity</span>
+        </div>
+        <div class="case-body">
+          <p>A 34-year-old G2P1 with chronic hypertension on labetalol 200 mg BID presents to L&D triage at 31+5 weeks with a "splitting headache" for 6 hours unrelieved by acetaminophen. She also reports seeing flashing lights.</p>
+          <div class="case-vitals">
+            <div class="vital-box"><div class="vital-label">BP</div><div class="vital-value abnormal">174/112</div></div>
+            <div class="vital-box"><div class="vital-label">HR</div><div class="vital-value">96</div></div>
+            <div class="vital-box"><div class="vital-label">Platelets</div><div class="vital-value abnormal">88k</div></div>
+            <div class="vital-box"><div class="vital-label">AST/ALT</div><div class="vital-value abnormal">3× ULN</div></div>
+            <div class="vital-box"><div class="vital-label">Creatinine</div><div class="vital-value abnormal">1.4</div></div>
+            <div class="vital-box"><div class="vital-label">LDH</div><div class="vital-value abnormal">780 U/L</div></div>
+          </div>
+          <div class="case-question">What syndrome does this patient have, and what is your immediate management plan?</div>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">Reveal Answer</button>
+          <div class="case-answer">
+            <div class="answer-key-point"><strong>Diagnosis:</strong> HELLP syndrome (hemolysis: LDH 780, thrombocytopenia &lt;100k, elevated LFTs ≥2× ULN) superimposed on chronic HTN, with severe-feature preeclampsia.</div>
+            <div class="answer-key-point"><strong>Immediate:</strong> IV access × 2. Acute severe HTN treatment NOW — labetalol 20 mg IV (she's already on PO labetalol; IV dosing is independent). Goal BP &lt;160/110 within 30–60 min.</div>
+            <div class="answer-key-point"><strong>Magnesium:</strong> Load Mg₂SO₄ 4–6 g IV over 15–20 min → 2 g/hr maintenance for seizure prophylaxis. Monitor UO, DTRs, respiratory rate.</div>
+            <div class="answer-key-point"><strong>Steroids:</strong> Betamethasone 12 mg IM × 2 doses 24 hrs apart (31+5 wk — imminent delivery likely; fetal lung maturity benefit).</div>
+            <div class="answer-key-point"><strong>Delivery:</strong> HELLP at 31+5 weeks — stabilize, then deliver. At &lt;34 weeks with HELLP, ACOG recommends delivery after corticosteroid course if maternal and fetal status stable. Call MFM/attending immediately.</div>
+            <div class="answer-key-point"><strong>Teaching:</strong> Platelets &lt;100k with HELLP — do NOT give neuraxial anesthesia without hematology/anesthesia discussion. Platelet transfusion if &lt;50k before surgery.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 3 -->
+      <div class="case-card">
+        <div class="case-header">
+          <div>
+            <div class="case-title">Case 3: Postpartum Headache</div>
+            <div class="case-meta">G3P3 · Postpartum day 4 · Called into L&D</div>
+          </div>
+          <span class="pill pill-amber">Moderate Complexity</span>
+        </div>
+        <div class="case-body">
+          <p>A 31-year-old G3P3 delivered via SVD at 39+1 weeks, was discharged POD2 with BPs in the 130s/80s. She calls at postpartum day 4 with a frontal headache that "feels like pressure," rating it 7/10. She also notes some swelling in her legs. No prenatal history of hypertension.</p>
+          <div class="case-vitals">
+            <div class="vital-box"><div class="vital-label">BP (home)</div><div class="vital-value abnormal">158/104</div></div>
+            <div class="vital-box"><div class="vital-label">Headache</div><div class="vital-value abnormal">Yes, 7/10</div></div>
+            <div class="vital-box"><div class="vital-label">Vision Δ</div><div class="vital-value">Denies</div></div>
+            <div class="vital-box"><div class="vital-label">Edema</div><div class="vital-value">Bilateral LE</div></div>
+          </div>
+          <div class="case-question">How do you manage this patient over the phone? What should she do, and what will you do?</div>
+          <button class="reveal-btn" onclick="toggleAnswer(this)">Reveal Answer</button>
+          <div class="case-answer">
+            <div class="answer-key-point"><strong>Disposition:</strong> Send to L&D or ED immediately. Do not manage new postpartum hypertension by phone alone. BP 158/104 + headache = new-onset postpartum preeclampsia until proven otherwise.</div>
+            <div class="answer-key-point"><strong>On arrival:</strong> Repeat BP, CBC, CMP, LFTs, urine Pr:Cr. If BP ≥160/110, treat immediately. Consider Mg if severe features present (headache qualifies).</div>
+            <div class="answer-key-point"><strong>Teaching:</strong> Postpartum preeclampsia most commonly occurs days 3–6 after delivery. Up to 25% of eclampsia cases occur postpartum. New hypertension beyond 72 hrs postpartum warrants full workup regardless of prenatal history.</div>
+            <div class="answer-key-point"><strong>NSAIDs:</strong> Ibuprofen commonly prescribed postpartum — hold if BP is elevated, as NSAIDs can worsen hypertension and mask symptoms.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== GUIDELINES TAB ===== -->
+    <div id="guidelines" class="tab-panel">
+      <div class="section-head">
+        <div class="section-icon">📚</div>
+        <div>
+          <div class="section-eyebrow">ACOG Practice Bulletin No. 222</div>
+          <h2>Evidence-Based Guideline Deep-Dive</h2>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:0.5rem;">
+        <p style="font-size:0.8rem;color:var(--gray-600);">
+          <span class="pill pill-teal">Grade A</span> Good/consistent scientific evidence &nbsp;
+          <span class="pill pill-amber">Grade B</span> Limited/inconsistent evidence &nbsp;
+          <span class="pill pill-blue">Grade C</span> Expert opinion / consensus
+        </p>
+      </div>
+
+      <div class="guideline-section" style="margin-top:1.25rem;">
+        <div class="card">
+          <h3>Diagnosis</h3>
+          <div class="evidence-row">
+            <div class="evidence-grade" style="background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal);">A</div>
+            <div class="evidence-text">Preeclampsia is diagnosed by <strong>new-onset hypertension (≥140/90 mmHg) after 20 weeks</strong>, with proteinuria ≥300 mg/24h or Pr:Cr ≥0.3, OR any severe feature in the absence of proteinuria.</div>
+          </div>
+          <div class="evidence-row">
+            <div class="evidence-grade" style="background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal);">A</div>
+            <div class="evidence-text"><strong>Proteinuria is not required</strong> for diagnosis if severe features are present (thrombocytopenia, renal insufficiency, hepatic involvement, pulmonary edema, new headache, or visual disturbances).</div>
+          </div>
+          <div class="evidence-row">
+            <div class="evidence-grade" style="background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber);">B</div>
+            <div class="evidence-text">A <strong>24-hour urine protein collection</strong> or a spot urine protein-to-creatinine ratio ≥0.3 are the preferred methods for quantifying proteinuria; dipstick alone is not sufficient for definitive diagnosis.</div>
+          </div>
+          <div class="evidence-row">
+            <div class="evidence-grade" style="background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber);">B</div>
+            <div class="evidence-text"><strong>Uric acid, LDH, and haptoglobin</strong> are not diagnostic criteria, but rising uric acid may predict worsening disease. These labs inform clinical picture.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Management — Without Severe Features</h3>
+          <div class="evidence-row">
+            <div class="evidence-grade" style="background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal);">A</div>
+            <div class="evidence-text"><strong>Delivery at 37+0 weeks</strong> is recommended for preeclampsia without severe features. Expectant management before 37 weeks requires close maternal and fetal surveillance.</div>
+          </div>
+          <div class="evidence-row">
+            <div class="evidence-grade" style="background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber);">B</div>
+            <div class="evidence-text">Antihypertensive therapy is <strong>not recommended</strong> for preeclampsia without severe features (BP 140–159/90–109) for maternal benefit, but may be used to allow prolongation of pregnancy.</div>
+          </div>
+          <div class="evidence-row">
+            <div class="evidence-grade" style="background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber);">B</div>
+            <div class="evidence-text">Recommended monitoring includes <strong>weekly BMP, CBC, LFTs</strong>, and fetal surveillance with NST/BPP. Serial growth ultrasounds are indicated.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Management — With Severe Features</h3>
+          <div class="evidence-row">
+            <div class="evidence-grade" style="background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal);">A</div>
+            <div class="evidence-text"><strong>Delivery at ≥34+0 weeks</strong> is recommended. Before 34 weeks, hospitalization with close monitoring is required; expectant management is only appropriate in select, stable patients at tertiary centers.</div>
+          </div>
+          <div class="evidence-row">
+            <div class="evidence-grade" style="background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal);">A</div>
+            <div class="evidence-text"><strong>Magnesium sulfate</strong> is recommended for seizure prophylaxis in women with preeclampsia with severe features and should be continued for at least 24 hours postpartum.</div>
+          </div>
+          <div class="evidence-row">
+            <div class="evidence-grade" style="background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal);">A</div>
+            <div class="evidence-text">Acute severe hypertension (≥160/110) should be treated with antihypertensive medications <strong>within 30–60 minutes</strong>. Labetalol IV, hydralazine IV, and nifedipine IR PO are all first-line options.</div>
+          </div>
+          <div class="evidence-row">
+            <div class="evidence-grade" style="background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber);">B</div>
+            <div class="evidence-text"><strong>Antenatal corticosteroids</strong> (betamethasone) are recommended for all women with preeclampsia with severe features at 24+0 to 36+6 weeks who are expected to deliver within 7 days.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Prevention</h3>
+          <div class="evidence-row">
+            <div class="evidence-grade" style="background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal);">A</div>
+            <div class="evidence-text"><strong>Low-dose aspirin 81 mg/day</strong> is recommended beginning 12–28 weeks (optimally before 16 weeks) through delivery for women with ≥1 high-risk factor or ≥2 moderate-risk factors.</div>
+          </div>
+          <div class="evidence-row">
+            <div class="evidence-grade" style="background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber);">B</div>
+            <div class="evidence-text">Calcium supplementation ≥1 g/day may reduce risk in populations with <strong>low dietary calcium intake</strong>. Not routinely recommended in the US where calcium intake is generally adequate.</div>
+          </div>
+          <div class="evidence-row">
+            <div class="evidence-grade" style="background:#EEF0FF;color:var(--purple);border:1px solid var(--purple);">C</div>
+            <div class="evidence-text">Vitamin C, vitamin E, and fish oil supplementation are <strong>not recommended</strong> for preeclampsia prevention. No evidence of benefit from randomized trials.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Long-Term Implications</h3>
+          <div class="evidence-row">
+            <div class="evidence-grade" style="background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal);">A</div>
+            <div class="evidence-text">Women with a history of preeclampsia have <strong>~2× higher lifetime risk</strong> of ischemic heart disease, stroke, and thromboembolic disease. Preeclampsia is an independent cardiovascular risk factor.</div>
+          </div>
+          <div class="evidence-row">
+            <div class="evidence-grade" style="background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber);">B</div>
+            <div class="evidence-text">Postpartum BP evaluation at <strong>72 hours and 7–10 days</strong> after delivery is recommended. New antihypertensives may be needed; methyldopa should generally be avoided postpartum due to side effects.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== DOSING TAB ===== -->
+    <div id="dosing" class="tab-panel">
+      <div class="section-head">
+        <div class="section-icon">💊</div>
+        <div>
+          <div class="section-eyebrow">Pharmacology Reference</div>
+          <h2>Drug Dosing & Management Tables</h2>
+        </div>
+      </div>
+
+      <!-- Magnesium -->
+      <div class="drug-section">
+        <div class="drug-header">
+          <div>
+            <div class="drug-name">Magnesium Sulfate (MgSO₄)</div>
+            <div class="drug-class">Seizure Prophylaxis / Eclampsia Treatment</div>
+          </div>
+          <span class="pill pill-red" style="background:rgba(192,57,43,0.2);border-color:#FF6B6B;color:#FF6B6B;">First-Line</span>
+        </div>
+        <div class="drug-body">
+          <div class="drug-row">
+            <div class="drug-row-label">Loading Dose</div>
+            <div class="drug-row-val mono-text">4–6 g IV over 15–20 min<br><span style="color:var(--gray-400);font-size:0.78rem;">Typical: 4 g in 100 mL NS infused over 15–20 min via pump</span></div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Maintenance</div>
+            <div class="drug-row-val mono-text">1–2 g/hr IV continuous infusion</div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Duration</div>
+            <div class="drug-row-val">Continue during labor and for 24 hours postpartum (or 24 hours after last seizure if eclampsia)</div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Recurrent Seizure</div>
+            <div class="drug-row-val mono-text">Additional 2 g IV bolus over 5 min · If fails → benzodiazepine</div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Monitoring</div>
+            <div class="drug-row-val">DTRs q1h · Respiratory rate q1h (hold if &lt;12/min) · Urine output (hold if &lt;25 mL/hr for ≥2 hrs) · Serum Mg levels if renal insufficiency</div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Therapeutic Level</div>
+            <div class="drug-row-val mono-text">4–7 mEq/L (therapeutic) · >10 mEq/L (respiratory depression) · >15 mEq/L (cardiac arrest)</div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Renal Adjustment</div>
+            <div class="drug-row-val">Reduce maintenance to 0.5–1 g/hr if Cr >1.0 · Monitor serum levels · Use with caution if oliguric</div>
+          </div>
+          <div class="danger-note">Antidote: Calcium gluconate 1 g (10 mL of 10% solution) IV over 3 minutes. Keep at bedside whenever MgSO₄ is infusing.</div>
+          <div class="warning-note">Mg/nifedipine interaction: Concurrent use may cause excessive hypotension or neuromuscular blockade. Monitor closely.</div>
+        </div>
+      </div>
+
+      <!-- Labetalol -->
+      <div class="drug-section">
+        <div class="drug-header">
+          <div>
+            <div class="drug-name">Labetalol</div>
+            <div class="drug-class">α/β-Blocker · Acute Antihypertensive</div>
+          </div>
+          <span class="pill pill-blue" style="background:rgba(30,95,168,0.15);border-color:#2E7DD4;color:#2E7DD4;">First-Line IV</span>
+        </div>
+        <div class="drug-body">
+          <div class="drug-row">
+            <div class="drug-row-label">Acute IV Protocol</div>
+            <div class="drug-row-val mono-text">
+              20 mg IV → wait 10–20 min<br>
+              40 mg IV → wait 10–20 min<br>
+              80 mg IV → wait 10–20 min<br>
+              Max cumulative: 300 mg
+            </div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Oral Maintenance</div>
+            <div class="drug-row-val mono-text">200–800 mg PO BID–TID · Start 200 mg BID</div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Onset (IV)</div>
+            <div class="drug-row-val mono-text">2–5 minutes · Peak: 5–15 minutes</div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Contraindications</div>
+            <div class="drug-row-val">Asthma / reactive airway disease · Bradycardia (HR &lt;60) · 2nd or 3rd degree heart block · Decompensated heart failure · Cocaine toxicity</div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Safety in Pregnancy</div>
+            <div class="drug-row-val">Well-established · Does not cross placenta significantly · Avoid methyldopa or atenolol in preference</div>
+          </div>
+          <div class="warning-note">If labetalol fails to control BP after maximum doses, switch to an alternate agent (hydralazine IV or nifedipine) and contact attending.</div>
+        </div>
+      </div>
+
+      <!-- Nifedipine -->
+      <div class="drug-section">
+        <div class="drug-header">
+          <div>
+            <div class="drug-name">Nifedipine</div>
+            <div class="drug-class">Calcium Channel Blocker · Acute & Maintenance</div>
+          </div>
+          <span class="pill pill-blue" style="background:rgba(30,95,168,0.15);border-color:#2E7DD4;color:#2E7DD4;">First-Line PO</span>
+        </div>
+        <div class="drug-body">
+          <div class="drug-row">
+            <div class="drug-row-label">Acute (IR)</div>
+            <div class="drug-row-val mono-text">10–20 mg PO q20–30 min · Max 50 mg in acute setting<br><span style="color:var(--gray-400);font-size:0.78rem;">Use IMMEDIATE-RELEASE formulation only for acute treatment</span></div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Maintenance (ER)</div>
+            <div class="drug-row-val mono-text">30–120 mg PO daily (extended-release)</div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Onset (IR)</div>
+            <div class="drug-row-val mono-text">20–30 minutes · Peak: 30–60 minutes</div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Advantages</div>
+            <div class="drug-row-val">Oral route — useful if IV access not yet established · Safe in asthma · Effective tocolytic effect may be beneficial preterm</div>
+          </div>
+          <div class="warning-note">Mg/nifedipine interaction: May potentiate neuromuscular blockade and exaggerated hypotension when used together. Monitor BP and neuromuscular function closely.</div>
+          <div class="danger-note">Do NOT use sublingual nifedipine. Rapid absorption causes unpredictable BP drops and is associated with fetal distress. Not approved for this route.</div>
+        </div>
+      </div>
+
+      <!-- Hydralazine -->
+      <div class="drug-section">
+        <div class="drug-header">
+          <div>
+            <div class="drug-name">Hydralazine</div>
+            <div class="drug-class">Arteriolar Vasodilator · IV Antihypertensive</div>
+          </div>
+          <span class="pill pill-amber" style="background:var(--amber-bg);border-color:var(--amber);color:var(--amber);">Second-Line</span>
+        </div>
+        <div class="drug-body">
+          <div class="drug-row">
+            <div class="drug-row-label">Acute IV</div>
+            <div class="drug-row-val mono-text">5–10 mg IV q20–30 min · Max 20 mg total</div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Onset</div>
+            <div class="drug-row-val mono-text">10–30 minutes · Duration: 2–4 hours</div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Side Effects</div>
+            <div class="drug-row-val">Reflex tachycardia · Headache (can mimic eclampsia symptoms) · Unpredictable response · Palpitations</div>
+          </div>
+          <div class="warning-note">Unpredictable hypotensive response. Less preferred than labetalol or nifedipine as first-line per current ACOG guidance. Hydralazine-induced headache can complicate symptom assessment.</div>
+        </div>
+      </div>
+
+      <!-- Betamethasone -->
+      <div class="drug-section">
+        <div class="drug-header">
+          <div>
+            <div class="drug-name">Betamethasone</div>
+            <div class="drug-class">Corticosteroid · Fetal Lung Maturity</div>
+          </div>
+          <span class="pill pill-teal" style="background:var(--teal-bg);border-color:var(--teal);color:var(--teal);">Standard of Care</span>
+        </div>
+        <div class="drug-body">
+          <div class="drug-row">
+            <div class="drug-row-label">Dosing</div>
+            <div class="drug-row-val mono-text">12 mg IM × 2 doses, 24 hours apart</div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Indication Window</div>
+            <div class="drug-row-val mono-text">24+0 to 36+6 weeks if delivery anticipated within 7 days</div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Efficacy</div>
+            <div class="drug-row-val">Reduces RDS, IVH, necrotizing enterocolitis. Late preterm course (34–36+6) reduces NICU admission and respiratory morbidity.</div>
+          </div>
+          <div class="drug-row">
+            <div class="drug-row-label">Effect on BP</div>
+            <div class="drug-row-val">Can transiently worsen hypertension in first 24–48 hrs. Anticipate potential BP spike and monitor closely after administration.</div>
+          </div>
+          <div class="warning-note">Betamethasone can worsen hyperglycemia in diabetic patients. Monitor BG closely. Consider insulin adjustments. Effect lasts ~48–72 hours after completion.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Comparison: Acute Antihypertensives at a Glance</h3>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Drug</th>
+                <th>Route</th>
+                <th>Initial Dose</th>
+                <th>Onset</th>
+                <th>Max Dose</th>
+                <th>Avoid If</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Labetalol</strong></td>
+                <td><span class="pill pill-red">IV</span></td>
+                <td class="mono-val">20 mg</td>
+                <td class="mono-val">2–5 min</td>
+                <td class="mono-val">300 mg</td>
+                <td>Asthma, bradycardia, HF</td>
+              </tr>
+              <tr>
+                <td><strong>Nifedipine IR</strong></td>
+                <td><span class="pill pill-teal">PO</span></td>
+                <td class="mono-val">10–20 mg</td>
+                <td class="mono-val">20–30 min</td>
+                <td class="mono-val">50 mg (acute)</td>
+                <td>Sublingual route (contraindicated)</td>
+              </tr>
+              <tr>
+                <td><strong>Hydralazine</strong></td>
+                <td><span class="pill pill-red">IV</span></td>
+                <td class="mono-val">5–10 mg</td>
+                <td class="mono-val">10–30 min</td>
+                <td class="mono-val">20 mg</td>
+                <td>Preferred second-line</td>
+              </tr>
+              <tr>
+                <td><strong>Methyldopa</strong></td>
+                <td><span class="pill pill-teal">PO</span></td>
+                <td class="mono-val">250–500 mg</td>
+                <td class="mono-val">4–6 hrs</td>
+                <td class="mono-val">3 g/day</td>
+                <td>Not for acute use. Avoid postpartum (depression risk)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== AI CONSULT TAB ===== -->
+    <div id="consult" class="tab-panel">
+      <div class="section-head">
+        <div class="section-icon">🤖</div>
+        <div>
+          <div class="section-eyebrow">Resident Learning Tool</div>
+          <h2>AI Clinical Consult</h2>
+        </div>
+      </div>
+
+      <div class="algo-box warning" style="margin-bottom:1.25rem;">
+        <div class="algo-box-label">Educational Use Only</div>
+        <p>This AI assistant provides information based on <strong>ACOG Practice Bulletin No. 222</strong>. It is a learning aid, not a substitute for clinical judgment, attending guidance, or institutional protocols. Always consult your supervising physician for real patient care decisions.</p>
+      </div>
+
+      <div class="consult-container">
+        <div class="consult-header">
+          <div>
+            <div class="consult-title">Preeclampsia Consult — ACOG PB-222 Reference</div>
+            <div class="consult-subtitle">Ask about diagnosis, management, dosing, delivery timing, or guidelines</div>
+          </div>
+          <span class="consult-badge">Resident Tool</span>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="msg ai">
+            <div class="msg-avatar">AI</div>
+            <div class="msg-bubble">
+              <strong>Preeclampsia Clinical Reference — Ready.</strong><br><br>
+              I answer questions based strictly on <strong>ACOG Practice Bulletin No. 222</strong>. Ask me about:<br><br>
+              • Diagnostic criteria and severe features<br>
+              • Delivery timing decisions<br>
+              • Drug dosing (Mg, labetalol, nifedipine)<br>
+              • HELLP syndrome management<br>
+              • Postpartum surveillance<br>
+              • Long-term cardiovascular implications<br><br>
+              What would you like to review?
+            </div>
+          </div>
+        </div>
+        <div class="typing-dots" id="typingDots">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+        <div class="chat-input-bar">
+          <input type="text" class="chat-input" id="chatInput" placeholder="e.g., When do I deliver with severe features at 32 weeks?" onkeydown="if(event.key==='Enter') sendMsg()">
+          <button class="chat-send" id="sendBtn" onclick="sendMsg()">Send →</button>
+        </div>
+        <div class="suggested-chips">
+          <span class="chip" onclick="quickAsk(this.textContent)">Mg toxicity signs & antidote</span>
+          <span class="chip" onclick="quickAsk(this.textContent)">Delivery criteria severe features</span>
+          <span class="chip" onclick="quickAsk(this.textContent)">HELLP vs preeclampsia differences</span>
+          <span class="chip" onclick="quickAsk(this.textContent)">Postpartum preeclampsia workup</span>
+          <span class="chip" onclick="quickAsk(this.textContent)">Aspirin prophylaxis criteria</span>
+          <span class="chip" onclick="quickAsk(this.textContent)">Labetalol vs nifedipine choice</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== RISK TAB ===== -->
+    <div id="risk" class="tab-panel">
+      <div class="section-head">
+        <div class="section-icon">📊</div>
+        <div>
+          <div class="section-eyebrow">ACOG PB-222 · Clinical Decision Support</div>
+          <h2>Risk Stratification & Aspirin Prophylaxis</h2>
+        </div>
+      </div>
+
+      <div class="aspirin-box">
+        <div>
+          <div class="aspirin-stat-label">Aspirin Dose</div>
+          <div class="aspirin-stat-value">81 mg</div>
+          <div class="aspirin-stat-note">Daily, taken at bedtime</div>
+        </div>
+        <div>
+          <div class="aspirin-stat-label">Start Window</div>
+          <div class="aspirin-stat-value">12–28 wk</div>
+          <div class="aspirin-stat-note">Ideally before 16 weeks</div>
+        </div>
+        <div>
+          <div class="aspirin-stat-label">Risk Reduction</div>
+          <div class="aspirin-stat-value">~24%</div>
+          <div class="aspirin-stat-note">Preterm preeclampsia: up to 62%</div>
+        </div>
+      </div>
+
+      <div class="risk-grid">
+        <div class="risk-group">
+          <div class="risk-group-header high-risk">
+            🔴 High-Risk Factors — 1 or more → prescribe aspirin
+          </div>
+          <ul class="risk-factor-list">
+            <li class="risk-factor-item"><span class="risk-dot high"></span>History of preeclampsia (especially early-onset or severe)</li>
+            <li class="risk-factor-item"><span class="risk-dot high"></span>Multifetal gestation (twins, triplets)</li>
+            <li class="risk-factor-item"><span class="risk-dot high"></span>Chronic hypertension</li>
+            <li class="risk-factor-item"><span class="risk-dot high"></span>Type 1 or Type 2 diabetes mellitus</li>
+            <li class="risk-factor-item"><span class="risk-dot high"></span>Chronic kidney disease</li>
+            <li class="risk-factor-item"><span class="risk-dot high"></span>Autoimmune disease (SLE, antiphospholipid syndrome)</li>
+          </ul>
+        </div>
+        <div class="risk-group">
+          <div class="risk-group-header mod-risk">
+            🟡 Moderate-Risk Factors — 2 or more → prescribe aspirin
+          </div>
+          <ul class="risk-factor-list">
+            <li class="risk-factor-item"><span class="risk-dot mod"></span>Nulliparity (first pregnancy)</li>
+            <li class="risk-factor-item"><span class="risk-dot mod"></span>Obesity (BMI &gt;30 kg/m²)</li>
+            <li class="risk-factor-item"><span class="risk-dot mod"></span>Family history (mother or sister with preeclampsia)</li>
+            <li class="risk-factor-item"><span class="risk-dot mod"></span>Age 35 years or older</li>
+            <li class="risk-factor-item"><span class="risk-dot mod"></span>African American race/ethnicity</li>
+            <li class="risk-factor-item"><span class="risk-dot mod"></span>Low socioeconomic status</li>
+            <li class="risk-factor-item"><span class="risk-dot mod"></span>Prior adverse pregnancy outcome (FGR, placental abruption)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Interactive Risk Assessment</h3>
+        <form id="riskForm">
+          <div style="margin-bottom:1rem;">
+            <p style="font-size:0.85rem;color:var(--gray-600);margin-bottom:0.75rem;">Select all factors that apply to this patient:</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0.6rem;" id="riskCheckboxes">
+              <label class="risk-check-label"><input type="checkbox" name="high" data-label="Hx preeclampsia"> History of preeclampsia</label>
+              <label class="risk-check-label"><input type="checkbox" name="high" data-label="Multifetal"> Multifetal gestation</label>
+              <label class="risk-check-label"><input type="checkbox" name="high" data-label="Chronic HTN"> Chronic hypertension</label>
+              <label class="risk-check-label"><input type="checkbox" name="high" data-label="Diabetes"> Type 1 or 2 diabetes</label>
+              <label class="risk-check-label"><input type="checkbox" name="high" data-label="CKD"> Chronic kidney disease</label>
+              <label class="risk-check-label"><input type="checkbox" name="high" data-label="Autoimmune"> Autoimmune disease (SLE, APS)</label>
+              <label class="risk-check-label"><input type="checkbox" name="mod" data-label="Nullip"> Nulliparity</label>
+              <label class="risk-check-label"><input type="checkbox" name="mod" data-label="Obese"> Obesity (BMI &gt;30)</label>
+              <label class="risk-check-label"><input type="checkbox" name="mod" data-label="FHx"> Family history (mother/sister)</label>
+              <label class="risk-check-label"><input type="checkbox" name="mod" data-label="Age≥35"> Age ≥35 years</label>
+              <label class="risk-check-label"><input type="checkbox" name="mod" data-label="AA"> African American race</label>
+              <label class="risk-check-label"><input type="checkbox" name="mod" data-label="Low SES"> Low socioeconomic status</label>
+            </div>
+          </div>
+          <button type="submit" style="background:var(--navy);color:white;border:none;border-radius:6px;padding:0.75rem 1.5rem;font-family:var(--mono);font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Stratify Risk →</button>
+        </form>
+        <div id="riskOutput" style="margin-top:1.25rem;"></div>
+      </div>
+
+      <div class="card">
+        <h3>Recurrence Risk by Prior History <span class="tag tag-grade-b">Grade B</span></h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>Prior Preeclampsia Type</th><th>Recurrence Risk</th><th>Risk if Severe/Preterm</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Any preeclampsia</td><td class="mono-val">5–8%</td><td>—</td></tr>
+            <tr><td>Preterm preeclampsia (&lt;34 wk)</td><td class="mono-val">~25%</td><td>~17% for preterm recurrence</td></tr>
+            <tr><td>Preeclampsia with severe features</td><td class="mono-val">~25%</td><td>Higher in subsequent pregnancy</td></tr>
+            <tr><td>HELLP syndrome</td><td class="mono-val">3–25%</td><td>Partial HELLP recurrence: up to 25%</td></tr>
+            <tr><td>Eclampsia</td><td class="mono-val">2%</td><td>Preeclampsia recurrence: ~25%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="footer-disclaimer">
+      ACOG Practice Bulletin No. 222 · Gestational Hypertension and Preeclampsia · This tool is for educational and reference purposes only. Clinical decisions must be made in consultation with supervising physicians and per institutional protocols. Developed by Rozenblyum & Zandieh under supervision of Kinzler MD FACOG & Chavez MD FACOG · v2.0 Resident Edition
+    </div>
+  </main>
+</div>
+
+<style>
+.risk-check-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.75rem;
+  background: var(--gray-100);
+  border-radius: 6px;
+  font-size: 0.84rem;
+  color: var(--navy);
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: border-color 0.15s, background 0.15s;
+}
+.risk-check-label:hover { border-color: var(--blue); background: #EEF4FF; }
+.risk-check-label input { accent-color: var(--blue); }
+</style>
+
+<script>
+// TAB NAVIGATION
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+// CASE ANSWERS
+function toggleAnswer(btn) {
+  const ans = btn.nextElementSibling;
+  if (ans.classList.contains('open')) {
+    ans.classList.remove('open');
+    btn.textContent = 'Reveal Answer';
+  } else {
+    ans.classList.add('open');
+    btn.textContent = 'Hide Answer';
+  }
+}
+
+// RISK FORM
+document.getElementById('riskForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const highChecked = [...document.querySelectorAll('input[name="high"]:checked')];
+  const modChecked = [...document.querySelectorAll('input[name="mod"]:checked')];
+  const h = highChecked.length, m = modChecked.length;
+
+  let level, color, bg, border, rec, aspirin;
+  if (h >= 1) {
+    level = 'HIGH RISK'; color = 'var(--crimson)'; bg = 'var(--crimson-bg)'; border = 'var(--crimson)';
+    aspirin = true;
+    rec = 'One or more high-risk factors identified. <strong>Low-dose aspirin 81 mg/day is recommended</strong>, ideally initiated before 16 weeks (acceptable 12–28 weeks). Continue through delivery.';
+  } else if (m >= 2) {
+    level = 'MODERATE RISK'; color = 'var(--amber)'; bg = 'var(--amber-bg)'; border = 'var(--amber)';
+    aspirin = true;
+    rec = `Two or more moderate-risk factors identified (${m} present). <strong>Low-dose aspirin 81 mg/day is recommended</strong> per ACOG, ideally initiated before 16 weeks.`;
+  } else {
+    level = 'LOWER RISK'; color = 'var(--teal)'; bg = 'var(--teal-bg)'; border = 'var(--teal)';
+    aspirin = false;
+    rec = 'Fewer than 2 moderate-risk factors and no high-risk factors. Aspirin not routinely indicated per ACOG. Maintain standard prenatal surveillance. Note: preeclampsia can still occur in lower-risk patients — clinical vigilance is always warranted.';
+  }
+
+  const factors = [...highChecked, ...modChecked].map(c => c.getAttribute('data-label')).join(', ');
+  document.getElementById('riskOutput').innerHTML = `
+    <div style="background:${bg};border:2px solid ${border};border-radius:8px;padding:1.25rem;">
+      <div style="font-family:var(--mono);font-size:0.8rem;font-weight:700;color:${color};letter-spacing:0.08em;margin-bottom:0.75rem;">${level}</div>
+      <p style="font-size:0.87rem;color:var(--navy);margin-bottom:0.75rem;">${rec}</p>
+      ${factors ? `<p style="font-family:var(--mono);font-size:0.72rem;color:var(--gray-600);">Factors selected: ${factors}</p>` : ''}
+      ${aspirin ? `<div style="margin-top:0.75rem;background:white;border-radius:6px;padding:0.75rem;font-size:0.82rem;"><strong>Prescribe:</strong> Aspirin 81 mg PO qHS · Start 12–28 wk (ideally &lt;16 wk) · Continue until delivery</div>` : ''}
+    </div>`;
+});
+
+// AI CHAT
+let history = [];
+
+function quickAsk(q) {
+  document.getElementById('chatInput').value = q;
+  sendMsg();
+}
+
+async function sendMsg() {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  addMsg('user', msg);
+  input.value = '';
+  input.disabled = true;
+  document.getElementById('sendBtn').disabled = true;
+  document.getElementById('typingDots').classList.add('active');
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: `You are a clinical reference assistant for OB/GYN residents, providing concise, evidence-based answers strictly grounded in ACOG Practice Bulletin No. 222: Gestational Hypertension and Preeclampsia.
+
+Format responses for a busy resident: lead with the direct clinical answer, then supporting details. Use bullet points for lists of criteria, medications, or steps. Include specific numbers (BP thresholds, doses, gestational age cutoffs) whenever relevant.
+
+Always include the evidence grade (Grade A/B/C) when citing specific ACOG recommendations. If a question goes beyond PB-222, note that clearly and provide general obstetric guidance.
+
+Never provide personalized patient-specific advice. End each response with a 1-line clinical pearl or key teaching point.`,
+        messages: [...history, { role: 'user', content: msg }]
+      })
+    });
+
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || 'Unable to retrieve response. Please consult ACOG PB-222 directly.';
+    history.push({ role: 'user', content: msg }, { role: 'assistant', content: reply });
+    addMsg('ai', reply);
+  } catch (err) {
+    addMsg('ai', 'Connection error. Please refer to the Algorithm, Dosing, and Guidelines tabs for clinical reference. For urgent decisions, contact your attending.');
+  } finally {
+    input.disabled = false;
+    document.getElementById('sendBtn').disabled = false;
+    document.getElementById('typingDots').classList.remove('active');
+    input.focus();
+  }
+}
+
+function addMsg(role, text) {
+  const container = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+
+  const avatar = document.createElement('div');
+  avatar.className = 'msg-avatar';
+  avatar.textContent = role === 'user' ? 'RES' : 'AI';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'msg-bubble';
+  bubble.innerHTML = text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n\n/g, '<br><br>')
+    .replace(/\n/g, '<br>');
+
+  div.appendChild(avatar);
+  div.appendChild(bubble);
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+</script>
+</body>
+</html>
