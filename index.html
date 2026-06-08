@@ -702,6 +702,25 @@ body {
 .aspirin-stat-value { font-family: var(--mono); font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 0.25rem; }
 .aspirin-stat-note { font-size: 0.78rem; color: var(--gray-400); }
 
+/* QUIZ CHOICE BUTTONS */
+.choice-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: white;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 7px;
+  padding: 0.85rem 1rem;
+  font-family: var(--sans);
+  font-size: 0.87rem;
+  color: var(--navy);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  line-height: 1.4;
+}
+.choice-btn:hover:not(:disabled) { border-color: var(--blue); background: #EEF4FF; }
+.choice-btn:disabled { cursor: default; }
+
 /* DISCLAIMER */
 .footer-disclaimer {
   background: var(--navy-mid);
@@ -817,6 +836,7 @@ body {
       <button class="tab-btn" onclick="showTab('dosing', this)">Drug Dosing</button>
       <button class="tab-btn" onclick="showTab('consult', this)">AI Consult</button>
       <button class="tab-btn" onclick="showTab('risk', this)">Risk Stratification</button>
+      <button class="tab-btn" onclick="showTab('quiz', this); initQuiz()">CREOG Quiz</button>
     </nav>
 
     <!-- ===== ALGORITHMS TAB ===== -->
@@ -1523,6 +1543,105 @@ body {
       </div>
     </div>
 
+    <!-- ===== CREOG QUIZ TAB ===== -->
+    <div id="quiz" class="tab-panel">
+      <div class="section-head">
+        <div class="section-icon">🎯</div>
+        <div>
+          <div class="section-eyebrow">CREOG Shelf Exam Prep · Preeclampsia & HTN in Pregnancy</div>
+          <h2>CREOG-Style Practice Quiz</h2>
+        </div>
+      </div>
+
+      <!-- QUIZ CONTROLS -->
+      <div id="quizLanding" class="card">
+        <h3>Exam Preparation</h3>
+        <p style="font-size:0.88rem;color:var(--gray-600);margin-bottom:1.25rem;">20 CREOG-style single-best-answer questions covering gestational hypertension and preeclampsia. Questions are written at the level tested on the CREOG In-Training Examination and reflect ACOG PB-222 content.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1.5rem;">
+          <div style="background:var(--gray-100);border-radius:8px;padding:1rem;text-align:center;">
+            <div style="font-family:var(--mono);font-size:1.5rem;font-weight:700;color:var(--navy);">20</div>
+            <div style="font-family:var(--mono);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);">Questions</div>
+          </div>
+          <div style="background:var(--gray-100);border-radius:8px;padding:1rem;text-align:center;">
+            <div style="font-family:var(--mono);font-size:1.5rem;font-weight:700;color:var(--navy);">SBA</div>
+            <div style="font-family:var(--mono);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);">Format</div>
+          </div>
+          <div style="background:var(--gray-100);border-radius:8px;padding:1rem;text-align:center;">
+            <div style="font-family:var(--mono);font-size:1.5rem;font-weight:700;color:var(--navy);">PB-222</div>
+            <div style="font-family:var(--mono);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);">Source</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+          <button onclick="startQuiz('all')" style="background:var(--navy);color:white;border:none;border-radius:6px;padding:0.8rem 1.5rem;font-family:var(--mono);font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Start Full Quiz (20 Qs)</button>
+          <button onclick="startQuiz('random10')" style="background:var(--blue);color:white;border:none;border-radius:6px;padding:0.8rem 1.5rem;font-family:var(--mono);font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Random 10 Questions</button>
+          <button onclick="startQuiz('missed')" id="missedBtn" style="background:var(--crimson);color:white;border:none;border-radius:6px;padding:0.8rem 1.5rem;font-family:var(--mono);font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;display:none;">Review Missed</button>
+        </div>
+        <div id="lastScore" style="margin-top:1.25rem;display:none;"></div>
+      </div>
+
+      <!-- ACTIVE QUIZ -->
+      <div id="quizActive" style="display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+          <div style="font-family:var(--mono);font-size:0.75rem;color:var(--gray-600);">
+            Question <span id="qNum">1</span> of <span id="qTotal">20</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:1rem;">
+            <div style="font-family:var(--mono);font-size:0.75rem;color:var(--gray-600);">Score: <span id="liveScore" style="color:var(--navy);font-weight:700;">0/0</span></div>
+            <button onclick="endQuizEarly()" style="background:none;border:1px solid var(--gray-200);border-radius:4px;padding:0.3rem 0.75rem;font-family:var(--mono);font-size:0.68rem;color:var(--gray-600);cursor:pointer;">End Quiz</button>
+          </div>
+        </div>
+
+        <!-- Progress bar -->
+        <div style="background:var(--gray-200);border-radius:999px;height:4px;margin-bottom:1.5rem;overflow:hidden;">
+          <div id="progressBar" style="background:var(--blue);height:100%;width:0%;transition:width 0.4s ease;border-radius:999px;"></div>
+        </div>
+
+        <div class="card" id="questionCard">
+          <div id="qCategory" style="font-family:var(--mono);font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:0.75rem;"></div>
+          <p id="qStem" style="font-size:0.95rem;font-weight:600;color:var(--navy);line-height:1.65;margin-bottom:1.5rem;"></p>
+          <div id="qVignette" style="background:var(--gray-100);border-radius:8px;padding:1rem;margin-bottom:1.25rem;font-size:0.87rem;color:var(--gray-600);line-height:1.7;display:none;"></div>
+          <div id="qChoices" style="display:grid;gap:0.6rem;"></div>
+          <div id="qFeedback" style="display:none;margin-top:1.25rem;border-radius:8px;padding:1.25rem;font-size:0.87rem;line-height:1.7;"></div>
+          <div style="margin-top:1.25rem;display:flex;justify-content:flex-end;gap:0.75rem;">
+            <button id="nextBtn" onclick="nextQuestion()" style="display:none;background:var(--navy);color:white;border:none;border-radius:6px;padding:0.7rem 1.5rem;font-family:var(--mono);font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Next →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div id="quizResults" style="display:none;">
+        <div class="card" id="resultsCard">
+          <div style="text-align:center;padding:1rem 0 1.5rem;">
+            <div id="resultEmoji" style="font-size:3rem;margin-bottom:0.5rem;"></div>
+            <div id="resultGrade" style="font-family:var(--mono);font-size:2.5rem;font-weight:700;margin-bottom:0.25rem;"></div>
+            <div id="resultLabel" style="font-family:var(--mono);font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-600);margin-bottom:1.5rem;"></div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:420px;margin:0 auto 1.5rem;">
+              <div style="background:var(--gray-100);border-radius:8px;padding:1rem;text-align:center;">
+                <div id="resCorrect" style="font-family:var(--mono);font-size:1.5rem;font-weight:700;color:var(--teal);"></div>
+                <div style="font-family:var(--mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);">Correct</div>
+              </div>
+              <div style="background:var(--gray-100);border-radius:8px;padding:1rem;text-align:center;">
+                <div id="resWrong" style="font-family:var(--mono);font-size:1.5rem;font-weight:700;color:var(--crimson);"></div>
+                <div style="font-family:var(--mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);">Incorrect</div>
+              </div>
+              <div style="background:var(--gray-100);border-radius:8px;padding:1rem;text-align:center;">
+                <div id="resPct" style="font-family:var(--mono);font-size:1.5rem;font-weight:700;color:var(--navy);"></div>
+                <div style="font-family:var(--mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);">Score</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+              <button onclick="startQuiz('all')" style="background:var(--navy);color:white;border:none;border-radius:6px;padding:0.7rem 1.25rem;font-family:var(--mono);font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Retake Full Quiz</button>
+              <button onclick="startQuiz('missed')" id="retakeMissed" style="background:var(--crimson);color:white;border:none;border-radius:6px;padding:0.7rem 1.25rem;font-family:var(--mono);font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;display:none;">Review Missed</button>
+              <button onclick="showLanding()" style="background:white;color:var(--navy);border:1px solid var(--gray-200);border-radius:6px;padding:0.7rem 1.25rem;font-family:var(--mono);font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Back to Menu</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- REVIEW SECTION -->
+        <div id="reviewList"></div>
+      </div>
+    </div>
+
     <div class="footer-disclaimer">
       ACOG Practice Bulletin No. 222 · Gestational Hypertension and Preeclampsia · This tool is for educational and reference purposes only. Clinical decisions must be made in consultation with supervising physicians and per institutional protocols. Developed by Rozenblyum & Zandieh under supervision of Kinzler MD FACOG & Chavez MD FACOG · v2.0 Resident Edition
     </div>
@@ -1650,6 +1769,388 @@ Never provide personalized patient-specific advice. End each response with a 1-l
     input.focus();
   }
 }
+
+// ==================== CREOG QUIZ ====================
+const QUIZ_BANK = [
+  {
+    id: 1,
+    category: 'Diagnosis',
+    vignette: 'A 26-year-old G1P0 at 34+2 weeks presents with BP 158/102 on two readings 4 hours apart. Urine protein-to-creatinine ratio is 0.28. She has no headache, no visual changes, and no epigastric pain. Platelets are 178k, AST/ALT normal, creatinine 0.8 mg/dL.',
+    stem: 'Which of the following best characterizes her diagnosis?',
+    choices: ['A. Gestational hypertension', 'B. Preeclampsia without severe features', 'C. Preeclampsia with severe features', 'D. Chronic hypertension', 'E. White coat hypertension'],
+    answer: 'A',
+    explanation: 'Gestational hypertension is defined as BP ≥140/90 mmHg after 20 weeks WITHOUT proteinuria or end-organ damage. Her Pr:Cr ratio is 0.28 (below the 0.3 threshold), labs are normal, and she has no severe symptoms. Proteinuria ≥0.3 Pr:Cr or ≥300 mg/24h would be needed for a preeclampsia diagnosis. If she goes on to develop end-organ signs, the diagnosis would be updated.',
+    pearl: 'Gestational HTN may progress to preeclampsia in up to 25% of cases — close surveillance is essential.'
+  },
+  {
+    id: 2,
+    category: 'Diagnosis',
+    vignette: 'A 32-year-old G2P1 at 29 weeks has BP 162/108 mmHg. She complains of a severe persistent headache unrelieved by acetaminophen. Platelets are 95,000/μL. AST is 3× the upper limit of normal. Urine protein is trace.',
+    stem: 'Which feature does NOT meet criteria for severe features of preeclampsia in this patient?',
+    choices: ['A. BP 162/108 mmHg', 'B. Headache unrelieved by medication', 'C. Platelets 95,000/μL', 'D. Trace urine protein', 'E. AST 3× ULN'],
+    answer: 'D',
+    explanation: 'Per ACOG PB-222, severe features include: BP ≥160/110, thrombocytopenia <100k, renal insufficiency (Cr >1.1), liver enzyme elevation ≥2× ULN, pulmonary edema, new headache unresponsive to medication, and visual disturbances. Trace urine protein is NOT a criterion for severe features — and notably, proteinuria is not even required for a preeclampsia diagnosis if other end-organ criteria are met.',
+    pearl: 'Proteinuria quantity does not determine severity — end-organ dysfunction does.'
+  },
+  {
+    id: 3,
+    category: 'Management',
+    vignette: 'A 29-year-old G1P0 is admitted at 35+4 weeks with preeclampsia without severe features. BP is 144/94, labs are within normal limits, NST is reactive, and estimated fetal weight is appropriate for gestational age.',
+    stem: 'According to ACOG, what is the recommended delivery timing for this patient?',
+    choices: ['A. Deliver immediately', 'B. Deliver at 36+0 weeks', 'C. Deliver at 37+0 weeks', 'D. Deliver at 38+0 weeks', 'E. Deliver at 39+0 weeks'],
+    answer: 'C',
+    explanation: 'ACOG Practice Bulletin No. 222 (Grade A recommendation) states that delivery at 37+0 weeks is recommended for preeclampsia without severe features. Before 37 weeks, expectant management with close maternal-fetal surveillance is appropriate in stable patients. Delivery before 37 weeks is not indicated without severe features or maternal/fetal deterioration.',
+    pearl: 'Preeclampsia without severe features → deliver at exactly 37+0, not 36, not 38.'
+  },
+  {
+    id: 4,
+    category: 'Management',
+    vignette: 'A 33-year-old G3P2 at 31+1 weeks is admitted with preeclampsia with severe features. BP is 168/112 mmHg. She is started on magnesium sulfate and betamethasone. After 48 hours, her BP is controlled, labs have stabilized, she is asymptomatic, and the fetal status is reassuring.',
+    stem: 'What is the most appropriate next step in management?',
+    choices: ['A. Discharge home with weekly follow-up', 'B. Deliver immediately given prior severe BP', 'C. Continue expectant inpatient management with close monitoring', 'D. Discontinue magnesium and proceed to outpatient management', 'E. Repeat corticosteroids immediately'],
+    answer: 'C',
+    explanation: 'At 31+1 weeks with stabilized severe-feature preeclampsia, ACOG supports expectant inpatient management at a facility with appropriate NICU capabilities. The goal is to safely prolong pregnancy to reduce neonatal morbidity. Discharge home is inappropriate for severe features. Magnesium is typically discontinued after the initial 24–48 hours unless actively delivering. A rescue course of steroids is not indicated after <2 weeks.',
+    pearl: 'Expectant management of severe-feature preeclampsia before 34 weeks requires level III care — never discharge home.'
+  },
+  {
+    id: 5,
+    category: 'Pharmacology',
+    vignette: 'A patient with preeclampsia with severe features has BP 172/114 mmHg. IV access is established. She has a history of asthma managed with an inhaler.',
+    stem: 'Which antihypertensive is most appropriate for acute treatment?',
+    choices: ['A. Labetalol 20 mg IV', 'B. Nifedipine 10 mg IR PO', 'C. Hydralazine 5 mg IV', 'D. Atenolol 25 mg PO', 'E. Metoprolol 5 mg IV'],
+    answer: 'B',
+    explanation: 'Labetalol is generally first-line IV treatment, but is contraindicated in asthma due to β-blockade causing bronchospasm. With her asthma history, nifedipine IR 10–20 mg PO is the appropriate first-line choice. Hydralazine IV is an acceptable alternative but is considered second-line per ACOG due to unpredictable response. Atenolol is not recommended in pregnancy due to fetal growth restriction. Metoprolol IV would also be relatively contraindicated in asthma.',
+    pearl: 'Labetalol + asthma = use nifedipine IR instead. Know your contraindications cold for CREOG.'
+  },
+  {
+    id: 6,
+    category: 'Pharmacology',
+    vignette: 'A patient is 4 hours postpartum after a vaginal delivery complicated by preeclampsia with severe features. She is receiving magnesium sulfate at 2 g/hr. The nurse calls to report: respiratory rate 10/min, DTRs absent, urine output 20 mL over the past 2 hours.',
+    stem: 'What is the most appropriate immediate intervention?',
+    choices: ['A. Increase IV fluid rate to 200 mL/hr', 'B. Discontinue magnesium and administer calcium gluconate 1 g IV', 'C. Administer furosemide 40 mg IV', 'D. Switch to oral magnesium oxide', 'E. Obtain serum magnesium level and await results before acting'],
+    answer: 'B',
+    explanation: 'This patient has signs of magnesium toxicity: respiratory rate <12/min, loss of DTRs, and oliguria impairing clearance. The antidote is calcium gluconate 1 g IV (10 mL of 10% solution) over 3 minutes. Magnesium must be stopped immediately — do not wait for serum levels when clinical toxicity is present. Fluid bolus would worsen pulmonary edema risk. Furosemide is not indicated acutely here.',
+    pearl: 'Mg toxicity sequence: DTR loss (7–10 mEq/L) → respiratory depression (>10) → cardiac arrest (>15). Act on clinical signs — don\'t wait for labs.'
+  },
+  {
+    id: 7,
+    category: 'Pharmacology',
+    vignette: 'A 28-year-old G1P0 at 30 weeks develops eclampsia. She receives magnesium sulfate 6 g IV loading dose and begins maintenance at 2 g/hr. Five minutes later she has a second grand mal seizure.',
+    stem: 'What is the next best step?',
+    choices: ['A. Increase magnesium maintenance to 4 g/hr', 'B. Administer an additional magnesium bolus of 2 g IV', 'C. Immediately proceed to cesarean delivery', 'D. Administer phenytoin 1000 mg IV', 'E. Administer diazepam 10 mg IV as first step'],
+    answer: 'B',
+    explanation: 'For a breakthrough seizure in a patient already on magnesium, ACOG recommends an additional bolus of 2 g IV magnesium over 5 minutes. If seizures persist after the additional bolus, a benzodiazepine (diazepam or lorazepam) is the next step. Increasing the maintenance infusion rate alone is insufficient for an acute seizure. Immediate cesarean is not indicated solely for eclampsia — stabilize first, then plan delivery. Phenytoin has no role in eclampsia management per current guidelines.',
+    pearl: 'Recurrent eclamptic seizure on Mg → 2 g rebolus first, then benzodiazepine if still seizing. Stabilize before delivering.'
+  },
+  {
+    id: 8,
+    category: 'HELLP Syndrome',
+    vignette: 'A 36-year-old G4P3 at 33 weeks presents with nausea, RUQ pain, and malaise for 2 days. BP is 154/96. Labs: platelets 78,000/μL, AST 210 U/L (ULN 40), LDH 820 U/L, bilirubin 1.8 mg/dL, peripheral smear shows schistocytes.',
+    stem: 'Which of the following is the most appropriate next step?',
+    choices: ['A. Outpatient management with repeat labs in 48 hours', 'B. Magnesium sulfate, corticosteroids, and plan delivery at 34 weeks', 'C. Immediate platelet transfusion to >100k, then deliver', 'D. Start dexamethasone to reverse HELLP and extend pregnancy to 36 weeks', 'E. Laberotomy to rule out hepatic rupture'],
+    answer: 'B',
+    explanation: 'This is HELLP syndrome (hemolysis: LDH 820, schistocytes; elevated liver enzymes: AST >2× ULN; low platelets: <100k). At 33 weeks, the appropriate management is: initiate MgSO₄ for seizure prophylaxis, administer betamethasone for fetal lung maturity, control BP, and plan delivery after steroid completion (typically 48 hrs). ACOG recommends delivery at ≥34 weeks for HELLP. At 33 weeks, waiting 48 hours for steroids is reasonable if maternal-fetal status is stable. Platelet transfusion threshold for vaginal delivery is generally <20–50k; 78k does not mandate immediate transfusion.',
+    pearl: 'HELLP = deliver at ≥34 wk. Before 34 wk, give steroids and deliver within 24–48 hrs regardless of completion.'
+  },
+  {
+    id: 9,
+    category: 'HELLP Syndrome',
+    vignette: 'A patient with HELLP syndrome is undergoing cesarean delivery. Platelets are 42,000/μL pre-operatively.',
+    stem: 'What platelet threshold is generally accepted before proceeding with cesarean delivery in HELLP syndrome?',
+    choices: ['A. >20,000/μL', 'B. >50,000/μL', 'C. >100,000/μL', 'D. >150,000/μL', 'E. No threshold — proceed regardless of platelet count'],
+    answer: 'B',
+    explanation: 'A platelet count of ≥50,000/μL is the general threshold for proceeding with cesarean delivery in the setting of HELLP syndrome, though institutional protocols vary. For neuraxial anesthesia, most anesthesiologists require ≥80,000–100,000/μL. With platelets at 42k, platelet transfusion prior to surgery would be appropriate. Peripartum platelet decline is expected and can be rapid — trend the count.',
+    pearl: 'Platelets <50k before cesarean → transfuse. Platelets <80–100k → discuss with anesthesia before neuraxial.'
+  },
+  {
+    id: 10,
+    category: 'Prevention',
+    vignette: 'During a new OB intake visit at 10 weeks gestation, a 31-year-old G2P1 reports her first pregnancy was complicated by preeclampsia with severe features requiring delivery at 34 weeks. Her current pregnancy has no other medical comorbidities.',
+    stem: 'What is the most appropriate recommendation regarding aspirin prophylaxis?',
+    choices: ['A. No aspirin needed as prior preeclampsia was in a different pregnancy', 'B. Aspirin 325 mg daily starting at 28 weeks', 'C. Aspirin 81 mg daily starting at 12–28 weeks (ideally before 16 weeks)', 'D. Aspirin 81 mg daily only if she develops hypertension this pregnancy', 'E. Aspirin 81 mg daily, but start only after 28 weeks to avoid fetal effects'],
+    answer: 'C',
+    explanation: 'A prior history of preeclampsia (especially preterm or severe) is a HIGH-RISK factor per ACOG PB-222, mandating low-dose aspirin 81 mg/day. The recommended window is 12–28 weeks of gestation, with optimal initiation before 16 weeks for maximum benefit. Starting after 28 weeks provides less benefit. Aspirin 325 mg is not the recommended dose. Aspirin is not contraindicated in the first trimester and no clinically significant fetal risk has been demonstrated at 81 mg/day.',
+    pearl: 'Prior preeclampsia = automatic aspirin at <16 weeks. Don\'t wait for BP to rise — that defeats the purpose.'
+  },
+  {
+    id: 11,
+    category: 'Prevention',
+    vignette: 'A 38-year-old nulliparous woman with a BMI of 33 and a mother who had preeclampsia presents for her first prenatal visit at 11 weeks.',
+    stem: 'Does this patient meet criteria for low-dose aspirin prophylaxis?',
+    choices: ['A. No — she has no high-risk factors', 'B. No — aspirin is only indicated after 16 weeks when risk can be better assessed', 'C. Yes — she has one high-risk factor (nulliparity)', 'D. Yes — she has two or more moderate-risk factors', 'E. Yes — obesity alone is a high-risk factor requiring aspirin'],
+    answer: 'D',
+    explanation: 'This patient has THREE moderate-risk factors: nulliparity, obesity (BMI >30), and family history (mother with preeclampsia). ACOG recommends aspirin prophylaxis when a patient has ≥2 moderate-risk factors. None of these individually is a high-risk factor. Age ≥35 would add a fourth moderate risk factor. Aspirin should be started ideally before 16 weeks in this case.',
+    pearl: 'Count the moderate-risk factors at intake: ≥2 moderate = aspirin. The checklist matters more than individual factors.'
+  },
+  {
+    id: 12,
+    category: 'Postpartum',
+    vignette: 'A 27-year-old G1P1 who had an uncomplicated prenatal course delivers at 39+2 weeks via vaginal delivery. At postpartum day 5, she calls reporting a pounding headache (8/10), swelling in her hands and face, and BP of 154/98 measured at a pharmacy.',
+    stem: 'What is the most appropriate next step?',
+    choices: ['A. Reassure — postpartum edema is common and advise ibuprofen for headache', 'B. Prescribe oral labetalol and recheck BP in 48 hours', 'C. Direct her to Labor and Delivery for evaluation and workup', 'D. Recommend increased fluid intake and rest', 'E. Schedule an outpatient appointment for next week'],
+    answer: 'C',
+    explanation: 'New-onset postpartum hypertension, especially with headache, on day 5 is postpartum preeclampsia until proven otherwise. Up to 25% of eclampsia cases occur postpartum (most within the first week). This patient requires immediate evaluation with BP monitoring, labs (CBC, CMP, LFTs, urine Pr:Cr), and possible magnesium sulfate if severe features are confirmed. Ibuprofen (an NSAID) can worsen hypertension — strongly avoid. Outpatient follow-up next week is dangerously delayed.',
+    pearl: 'Postpartum preeclampsia peaks days 3–6. New HTN + headache postpartum = send to L&D, never manage by phone alone.'
+  },
+  {
+    id: 13,
+    category: 'Postpartum',
+    vignette: 'A patient who delivered 18 hours ago after preeclampsia with severe features is receiving magnesium sulfate at 2 g/hr. Her BP is now 128/82, she is asymptomatic, and her labs are normalizing.',
+    stem: 'When should magnesium sulfate be discontinued?',
+    choices: ['A. Now — her BP is controlled and she is asymptomatic', 'B. After 12 hours postpartum', 'C. After 24 hours postpartum', 'D. After 48 hours postpartum', 'E. After 5 days or until labs fully normalize'],
+    answer: 'C',
+    explanation: 'Per ACOG PB-222, magnesium sulfate should be continued for at least 24 hours postpartum in women with preeclampsia with severe features. This is because the risk of eclampsia does not end with delivery and may actually peak in the first 24 hours postpartum. In eclampsia, magnesium is continued for 24 hours after the last seizure. Discontinuing early based on asymptomatic status or normalized BP alone is insufficient.',
+    pearl: 'Mg runs 24 hours minimum postpartum in severe-feature preeclampsia. Delivery doesn\'t end the risk.'
+  },
+  {
+    id: 14,
+    category: 'Long-Term Risk',
+    vignette: 'A 34-year-old woman is seen for her 6-week postpartum visit after a pregnancy complicated by severe preeclampsia at 33 weeks. Her BP today is 118/74. She asks about her future health risks.',
+    stem: 'Compared to women without a history of preeclampsia, she has approximately what increased lifetime risk of ischemic heart disease?',
+    choices: ['A. No increased risk', 'B. 1.5× higher risk', 'C. 2× higher risk', 'D. 5× higher risk', 'E. 10× higher risk'],
+    answer: 'C',
+    explanation: 'Per ACOG PB-222, women with a history of preeclampsia have approximately 2× higher lifetime risk of ischemic heart disease, stroke, thromboembolic disease, and chronic hypertension. This risk is independent of traditional cardiovascular risk factors and is considered an independent cardiovascular risk marker. Providers should document this history and ensure long-term cardiovascular surveillance.',
+    pearl: 'Preeclampsia = cardiac stress test. A woman who failed it carries double the lifetime CVD risk. Document it and counsel at every visit.'
+  },
+  {
+    id: 15,
+    category: 'Diagnosis',
+    vignette: 'A 30-year-old G1P0 at 38 weeks presents with BP 150/96 on two readings. 24-hour urine protein is 280 mg. She has a frontal headache rated 6/10 that did not respond to two doses of acetaminophen given 4 hours apart.',
+    stem: 'How should this patient be classified?',
+    choices: ['A. Gestational hypertension — proteinuria does not meet threshold', 'B. Preeclampsia without severe features — headache is common in pregnancy', 'C. Preeclampsia with severe features — due to refractory headache', 'D. Chronic hypertension with superimposed preeclampsia', 'E. Cannot be classified without serum labs'],
+    answer: 'C',
+    explanation: 'Even though her proteinuria (280 mg/24h) is below the 300 mg threshold and her BP is not ≥160/110, she has a NEW headache unresponsive to medication — which is one of the criteria for severe features per ACOG PB-222. Severe features do not require all criteria to be present; any one qualifying feature upgrades the diagnosis. This changes management: she should be hospitalized, receive MgSO₄, and delivered at ≥37 weeks (she is 38 weeks — deliver now).',
+    pearl: 'A single severe feature upgrades the classification. New refractory headache = severe feature even with normal-range BPs and borderline proteinuria.'
+  },
+  {
+    id: 16,
+    category: 'Management',
+    vignette: 'A resident is asked to counsel a 25-year-old G1P0 at 20 weeks about preeclampsia. The patient asks which supplements are proven to reduce her risk.',
+    stem: 'Which intervention has the strongest evidence for reducing preeclampsia risk in high-risk patients?',
+    choices: ['A. Vitamin C supplementation', 'B. Vitamin E supplementation', 'C. Fish oil / omega-3 supplementation', 'D. Calcium supplementation in calcium-replete populations', 'E. Low-dose aspirin 81 mg/day'],
+    answer: 'E',
+    explanation: 'Low-dose aspirin has the strongest evidence (Grade A, ACOG PB-222) for reducing preeclampsia risk in high- and moderate-risk patients. Vitamins C and E showed no benefit in large RCTs and are not recommended. Fish oil supplementation has no proven benefit for preeclampsia prevention. Calcium supplementation may help in populations with low dietary calcium intake, but this is less applicable in the US where intake is generally adequate and evidence is Grade B.',
+    pearl: 'Vitamins C and E: big trials, big disappointments. Only aspirin has Grade A evidence for preeclampsia prevention.'
+  },
+  {
+    id: 17,
+    category: 'Pharmacology',
+    vignette: 'A patient at 30 weeks with preeclampsia with severe features is being prepared for possible preterm delivery. She is 30+2 weeks gestation.',
+    stem: 'Which corticosteroid regimen is recommended for fetal lung maturity in this patient?',
+    choices: ['A. Dexamethasone 6 mg IM q12h × 4 doses', 'B. Betamethasone 12 mg IM q24h × 2 doses', 'C. Betamethasone 6 mg IM q12h × 2 doses', 'D. Dexamethasone 10 mg IM q12h × 2 doses', 'E. No steroids needed at 30 weeks — fetal lungs are mature enough'],
+    answer: 'B',
+    explanation: 'The standard regimen for antenatal corticosteroids is betamethasone 12 mg IM every 24 hours for 2 doses (total 24 mg). This is indicated for anticipated preterm delivery between 24+0 and 36+6 weeks. Dexamethasone 6 mg q12h × 4 doses is an alternative, but betamethasone is preferred in most US centers. The 6 mg × 2 doses option is incorrect dosing. Fetal lungs are NOT mature at 30 weeks — steroids are absolutely indicated.',
+    pearl: 'Betamethasone 12 mg × 2 doses q24h = standard. Know both the dose AND interval — CREOG tests both.'
+  },
+  {
+    id: 18,
+    category: 'Risk Factors',
+    vignette: 'You are seeing four different patients for their first prenatal visits. Which of the following patients has the HIGHEST individual risk for developing preeclampsia based on ACOG PB-222 risk stratification?',
+    stem: 'Select the patient with the highest risk designation:',
+    choices: ['A. 29-year-old G1P0 with BMI 28 and no other risk factors', 'B. 37-year-old G2P1 with BMI 31 and family history of preeclampsia', 'C. 31-year-old G3P2 with prior preeclampsia at 32 weeks requiring delivery', 'D. 40-year-old G1P0 with BMI 24 and African American race', 'E. 34-year-old G2P1 with diet-controlled gestational diabetes'],
+    answer: 'C',
+    explanation: 'A history of prior preeclampsia — especially early-onset (before 34 weeks) or preterm — is a HIGH-RISK factor per ACOG PB-222, the strongest individual risk category. One high-risk factor alone mandates aspirin prophylaxis. The other patients have moderate-risk factors (BMI >30, age ≥35, family history, African American race, nulliparity) which require ≥2 to indicate aspirin. Gestational diabetes (diet-controlled) is not listed as an independent risk factor.',
+    pearl: 'Prior preeclampsia <34 weeks = highest individual recurrence risk (~25%). Single factor = high-risk = aspirin.'
+  },
+  {
+    id: 19,
+    category: 'Eclampsia',
+    vignette: 'A 24-year-old G1P0 at 36 weeks with known preeclampsia without severe features has a witnessed generalized tonic-clonic seizure on the labor floor lasting 90 seconds. She was not on magnesium sulfate.',
+    stem: 'In addition to IV magnesium sulfate loading dose, what is the MOST immediate next priority?',
+    choices: ['A. Perform emergent cesarean delivery', 'B. Obtain CT head to rule out intracranial hemorrhage', 'C. Protect the airway, place in left lateral decubitus, and apply supplemental oxygen', 'D. Administer phenytoin 1000 mg IV for seizure control', 'E. Order stat MRI brain with gadolinium'],
+    answer: 'C',
+    explanation: 'Immediate eclampsia management priorities are: (1) airway protection, (2) positioning left lateral decubitus to prevent aspiration and relieve aortocaval compression, (3) supplemental oxygen, (4) call for help, then (5) administer magnesium sulfate. Most eclamptic seizures self-terminate within 60–90 seconds. Emergent cesarean is not the immediate first step — stabilize first. Phenytoin has no role in eclampsia per ACOG. Neuroimaging may be considered if atypical features are present, but not as the first priority.',
+    pearl: 'Eclampsia ABCs first — airway, left lateral, O₂ — then Mg. Seizure doesn\'t mean automatic emergency cesarean.'
+  },
+  {
+    id: 20,
+    category: 'Diagnosis',
+    vignette: 'A 35-year-old G2P1 with known chronic hypertension on labetalol 200 mg BID presents at 28 weeks. Her baseline BP was 130/80 at 8 weeks. Today her BP is 158/100 and her urine Pr:Cr is 0.38. She previously had no proteinuria.',
+    stem: 'What is the most accurate diagnosis?',
+    choices: ['A. Chronic hypertension — BP is her baseline', 'B. Gestational hypertension superimposed on chronic hypertension', 'C. Preeclampsia superimposed on chronic hypertension', 'D. Preeclampsia without severe features (de novo)', 'E. White coat hypertension exacerbation'],
+    answer: 'C',
+    explanation: 'In a patient with chronic hypertension, superimposed preeclampsia is diagnosed when new proteinuria develops after 20 weeks (Pr:Cr ≥0.3 when previously absent), OR when there is sudden worsening of previously controlled BP, OR new end-organ features. This patient has new proteinuria (Pr:Cr 0.38) in the setting of known chronic HTN — this is superimposed preeclampsia. The distinction matters for management: superimposed preeclampsia carries higher risk of severe complications and may warrant earlier delivery.',
+    pearl: 'Chronic HTN + new proteinuria after 20 wk = superimposed preeclampsia, not just "worsening chronic HTN." Reclassify and escalate surveillance.'
+  }
+];
+
+let quizQueue = [];
+let currentQIdx = 0;
+let correctCount = 0;
+let missedIds = [];
+let answered = 0;
+let quizInitialized = false;
+
+function initQuiz() {
+  if (quizInitialized) return;
+  quizInitialized = true;
+  updateMissedButton();
+}
+
+function updateMissedButton() {
+  const btn = document.getElementById('missedBtn');
+  if (btn && missedIds.length > 0) btn.style.display = 'inline-block';
+}
+
+function startQuiz(mode) {
+  let pool = [...QUIZ_BANK];
+  if (mode === 'random10') {
+    pool = pool.sort(() => Math.random() - 0.5).slice(0, 10);
+  } else if (mode === 'missed') {
+    pool = QUIZ_BANK.filter(q => missedIds.includes(q.id));
+    if (pool.length === 0) { alert('No missed questions to review!'); return; }
+  }
+  quizQueue = pool.sort(() => Math.random() - 0.5);
+  currentQIdx = 0;
+  correctCount = 0;
+  answered = 0;
+
+  document.getElementById('quizLanding').style.display = 'none';
+  document.getElementById('quizResults').style.display = 'none';
+  document.getElementById('quizActive').style.display = 'block';
+  document.getElementById('qTotal').textContent = quizQueue.length;
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = quizQueue[currentQIdx];
+  document.getElementById('qNum').textContent = currentQIdx + 1;
+  document.getElementById('progressBar').style.width = ((currentQIdx / quizQueue.length) * 100) + '%';
+  document.getElementById('liveScore').textContent = `${correctCount}/${answered}`;
+  document.getElementById('qCategory').textContent = q.category;
+  document.getElementById('qStem').textContent = q.stem;
+
+  const vigBox = document.getElementById('qVignette');
+  if (q.vignette) {
+    vigBox.textContent = q.vignette;
+    vigBox.style.display = 'block';
+  } else {
+    vigBox.style.display = 'none';
+  }
+
+  const choicesEl = document.getElementById('qChoices');
+  choicesEl.innerHTML = '';
+  q.choices.forEach(choice => {
+    const letter = choice.charAt(0);
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.setAttribute('data-letter', letter);
+    btn.textContent = choice;
+    btn.onclick = () => selectAnswer(letter, btn);
+    choicesEl.appendChild(btn);
+  });
+
+  document.getElementById('qFeedback').style.display = 'none';
+  document.getElementById('nextBtn').style.display = 'none';
+}
+
+function selectAnswer(letter, btn) {
+  const q = quizQueue[currentQIdx];
+  const allBtns = document.querySelectorAll('.choice-btn');
+  allBtns.forEach(b => b.disabled = true);
+  answered++;
+
+  const isCorrect = letter === q.answer;
+  if (isCorrect) {
+    correctCount++;
+    btn.style.background = '#1A7A6E';
+    btn.style.color = 'white';
+    btn.style.borderColor = '#1A7A6E';
+    missedIds = missedIds.filter(id => id !== q.id);
+  } else {
+    btn.style.background = '#C0392B';
+    btn.style.color = 'white';
+    btn.style.borderColor = '#C0392B';
+    if (!missedIds.includes(q.id)) missedIds.push(q.id);
+    allBtns.forEach(b => {
+      if (b.getAttribute('data-letter') === q.answer) {
+        b.style.background = '#1A7A6E';
+        b.style.color = 'white';
+        b.style.borderColor = '#1A7A6E';
+      }
+    });
+  }
+
+  document.getElementById('liveScore').textContent = `${correctCount}/${answered}`;
+
+  const feedback = document.getElementById('qFeedback');
+  feedback.style.display = 'block';
+  feedback.style.background = isCorrect ? 'var(--teal-bg)' : 'var(--crimson-bg)';
+  feedback.style.borderLeft = `4px solid ${isCorrect ? 'var(--teal)' : 'var(--crimson)'}`;
+  feedback.innerHTML = `<div style="font-family:var(--mono);font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:${isCorrect ? 'var(--teal)' : 'var(--crimson)'};margin-bottom:0.5rem;">${isCorrect ? '✓ Correct' : '✗ Incorrect — Answer: ' + q.answer}</div><p style="margin-bottom:0.75rem;">${q.explanation}</p><div style="background:rgba(0,0,0,0.05);border-radius:6px;padding:0.65rem 0.85rem;font-size:0.82rem;"><strong>🎯 Pearl:</strong> ${q.pearl}</div>`;
+
+  const nextBtn = document.getElementById('nextBtn');
+  nextBtn.style.display = 'inline-block';
+  nextBtn.textContent = currentQIdx + 1 < quizQueue.length ? 'Next →' : 'See Results';
+}
+
+function nextQuestion() {
+  currentQIdx++;
+  if (currentQIdx >= quizQueue.length) {
+    showResults();
+  } else {
+    renderQuestion();
+  }
+}
+
+function endQuizEarly() {
+  if (answered === 0 || confirm('End quiz and see results?')) showResults();
+}
+
+function showResults() {
+  document.getElementById('quizActive').style.display = 'none';
+  document.getElementById('quizResults').style.display = 'block';
+
+  const total = quizQueue.length;
+  const pct = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+
+  let emoji, label, color;
+  if (pct >= 90) { emoji = '🏆'; label = 'CREOG-Ready'; color = 'var(--teal)'; }
+  else if (pct >= 75) { emoji = '✅'; label = 'Solid Foundation'; color = 'var(--blue)'; }
+  else if (pct >= 60) { emoji = '📖'; label = 'Review Recommended'; color = 'var(--amber)'; }
+  else { emoji = '🔁'; label = 'Additional Study Needed'; color = 'var(--crimson)'; }
+
+  document.getElementById('resultEmoji').textContent = emoji;
+  document.getElementById('resultGrade').textContent = pct + '%';
+  document.getElementById('resultGrade').style.color = color;
+  document.getElementById('resultLabel').textContent = label;
+  document.getElementById('resCorrect').textContent = correctCount;
+  document.getElementById('resWrong').textContent = total - correctCount;
+  document.getElementById('resPct').textContent = pct + '%';
+
+  const retakeMissed = document.getElementById('retakeMissed');
+  if (missedIds.length > 0) retakeMissed.style.display = 'inline-block';
+
+  // Build review list
+  const reviewList = document.getElementById('reviewList');
+  reviewList.innerHTML = '<div style="font-family:var(--mono);font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray-600);margin:1.5rem 0 0.75rem;">Question Review</div>';
+  quizQueue.forEach((q, i) => {
+    const wasAnswered = i < answered;
+    reviewList.innerHTML += `
+      <div class="card" style="margin-bottom:0.75rem;border-left:4px solid ${missedIds.includes(q.id) ? 'var(--crimson)' : 'var(--teal)'};">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:0.5rem;">
+          <span style="font-family:var(--mono);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);">${q.category}</span>
+          <span class="pill ${missedIds.includes(q.id) ? 'pill-red' : 'pill-teal'}">${missedIds.includes(q.id) ? 'Missed' : 'Correct'}</span>
+        </div>
+        <p style="font-size:0.85rem;font-weight:600;color:var(--navy);margin-bottom:0.75rem;">${q.stem}</p>
+        <p style="font-size:0.82rem;color:var(--gray-600);line-height:1.6;margin-bottom:0.5rem;">${q.explanation}</p>
+        <div style="background:var(--gray-100);border-radius:6px;padding:0.6rem 0.85rem;font-size:0.8rem;"><strong>🎯 Pearl:</strong> ${q.pearl}</div>
+      </div>`;
+  });
+
+  updateMissedButton();
+  document.getElementById('lastScore').style.display = 'block';
+  document.getElementById('lastScore').innerHTML = `<div style="background:var(--gray-100);border-radius:8px;padding:0.75rem 1rem;font-family:var(--mono);font-size:0.75rem;color:var(--gray-600);">Last score: <strong style="color:var(--navy);">${pct}%</strong> (${correctCount}/${total}) · ${new Date().toLocaleDateString()}</div>`;
+}
+
+function showLanding() {
+  document.getElementById('quizActive').style.display = 'none';
+  document.getElementById('quizResults').style.display = 'none';
+  document.getElementById('quizLanding').style.display = 'block';
+  updateMissedButton();
+}
+
+// ==================== END QUIZ ====================
 
 function addMsg(role, text) {
   const container = document.getElementById('chatMessages');
