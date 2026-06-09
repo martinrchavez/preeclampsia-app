@@ -1764,11 +1764,16 @@ Never provide personalized patient-specific advice. End each response with a 1-l
     });
 
     const data = await res.json();
-    const reply = data.content?.[0]?.text || 'Unable to retrieve response. Please consult ACOG PB-222 directly.';
-    history.push({ role: 'user', content: msg }, { role: 'assistant', content: reply });
-    addMsg('ai', reply);
+    if (!res.ok) {
+      const errMsg = data?.error?.message || JSON.stringify(data) || 'API error ' + res.status;
+      addMsg('ai', '⚠️ API Error: ' + errMsg);
+    } else {
+      const reply = data.content?.[0]?.text || 'Empty response from API.';
+      history.push({ role: 'user', content: msg }, { role: 'assistant', content: reply });
+      addMsg('ai', reply);
+    }
   } catch (err) {
-    addMsg('ai', 'Connection error. Please refer to the Algorithm, Dosing, and Guidelines tabs for clinical reference. For urgent decisions, contact your attending.');
+    addMsg('ai', '⚠️ Connection error: ' + err.message);
   } finally {
     input.disabled = false;
     document.getElementById('sendBtn').disabled = false;
