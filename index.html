@@ -754,10 +754,13 @@ body {
 
 <header class="site-header">
   <div class="header-left">
-    <span class="logo-badge">OB/GYN Res.</span>
+    <span class="logo-badge">OB/GYN</span>
     <span class="header-title"><strong>Preeclampsia</strong> Clinical Reference</span>
   </div>
-  <span class="acog-ref">ACOG PB-222 · Updated Feb 2025</span>
+  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.2rem;">
+    <span class="acog-ref">ACOG PB-222 · Updated Feb 2025</span>
+    <span style="font-family:var(--mono);font-size:0.62rem;color:var(--gray-400);">OB/GYN Residents & Medical Students</span>
+  </div>
 </header>
 
 <div class="app-layout">
@@ -1741,7 +1744,11 @@ async function sendMsg() {
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1000,
